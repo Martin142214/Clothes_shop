@@ -1,4 +1,4 @@
-package com.example.demoTEST2.controllers;
+package com.example.demo.test.Controllers;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -17,19 +17,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.example.demoTEST2.models.entities.CartProduct;
-import com.example.demoTEST2.models.entities.Favorite;
-import com.example.demoTEST2.models.entities.Privilege;
-import com.example.demoTEST2.models.entities.Role;
-import com.example.demoTEST2.models.entities.User;
-import com.example.demoTEST2.repositories.CartRepository;
-import com.example.demoTEST2.repositories.FavoritesRepository;
-import com.example.demoTEST2.repositories.authRepositories.PrivilegeRepository;
-import com.example.demoTEST2.repositories.authRepositories.RoleRepository;
-import com.example.demoTEST2.repositories.authRepositories.UserRepository;
-import com.example.demoTEST2.services.ClothesService;
-import com.example.demoTEST2.services.ShoeService;
-import com.example.demoTEST2.services.UserService;
+import com.example.demo.test.models.entities.CartProduct;
+import com.example.demo.test.models.entities.Favorite;
+import com.example.demo.test.models.entities.Privilege;
+import com.example.demo.test.models.entities.Role;
+import com.example.demo.test.models.entities.User;
+import com.example.demo.test.repositories.CartRepository;
+import com.example.demo.test.repositories.FavoritesRepository;
+import com.example.demo.test.repositories.authRepositories.PrivilegeRepository;
+import com.example.demo.test.repositories.authRepositories.RoleRepository;
+import com.example.demo.test.repositories.authRepositories.UserRepository;
+import com.example.demo.test.services.ClothesService;
+import com.example.demo.test.services.ShoeService;
+import com.example.demo.test.services.UserService;
 
 @Controller
 public class AuthController {

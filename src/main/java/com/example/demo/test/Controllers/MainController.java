@@ -1,4 +1,4 @@
-package com.example.demoTEST2.controllers;
+package com.example.demo.test.Controllers;
 
 import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
@@ -9,9 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.example.demoTEST2.services.ClothesService;
-import com.example.demoTEST2.services.ShoeService;
-import com.example.demoTEST2.services.UserService;
+import com.example.demo.test.Services.ClothesService;
+import com.example.demo.test.Services.ShoeService;
+import com.example.demo.test.Services.UserService;
 
 @Controller
 @RequestMapping(value = {"{lang}/shoes/get", "/shoes/get"})
