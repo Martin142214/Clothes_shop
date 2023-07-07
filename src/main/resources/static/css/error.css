@@ -1,0 +1,72 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family:"Nunito Sans";
+    font-size: 1em;
+}
+
+  h1 {
+    font-size: 7.5em;
+    margin: 15px 0px;
+    font-weight:bold;
+  }
+
+  h2 {
+    font-weight:bold;
+  }
+
+  p {
+    margin-bottom: 50px;
+  }
+
+  .btn {
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+    text-decoration: none;
+    overflow: hidden;
+    background: transparent;
+    position: relative;
+    padding: 8px 50px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1em;
+    letter-spacing: 2px;
+    transition: 0.2s ease;
+    font-weight: bold;
+    margin: 5px 0px;
+  }
+  .green {
+      border: 2px solid green;
+      color: black;
+  }
+    .green:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 0%;
+        height: 100%;
+        background: linear-gradient(0deg, #ee0979 0%, #ff6a00 100%);
+        z-index: -1;
+        transition: 0.2s ease;
+    }
+    .green:hover {
+        color: white;
+        background: linear-gradient(0deg, #ee0979 0%, #ff6a00 100%);
+        transition: 0.2s ease;
+    }
+
+  @media screen and (max-width:768px) {
+    body {
+
+    }
+    .container {
+      margin-top:70px;
+      margin-bottom:70px;
+    }
+  } 
+
+
+
