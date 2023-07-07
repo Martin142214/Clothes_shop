@@ -1,0 +1,75 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="bg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="UTF-8">
+    <title>Navigation bar bg</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/navbar.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="/scripts/open_sideNavigation.js"></script>
+</head>
+<body>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="/bg"><b>Главна страница</b></a>
+        <a href="/bg/admin" th:if="${isAdmin}"><b>Aдминистративен панел</b></a>
+        <a href="/bg/shoes/get" th:unless="${isAdmin}"><b>Основна страница</b></a>
+        <a href="/bg/sneakers"><b>Обувки</b></a>
+        <a href="/bg/clothes"><b>Дрехи</b></a>
+        <a th:href="@{/bg/shoes/favorites}"><b>Любими</b>&#10084;</a>
+        <a href="/bg/auction"><b>Евенти</b></a>
+        <a th:href="@{/logout}"><b>Изход</b></a>
+    </div>
+<header>
+    <div class="navbar">
+        <span id="sideNavIcon" onclick="openNav()">&#9776;</span>
+        <img id="navIcon" th:src="@{/images/stockx-vector-logo.svg}" class="u-logo-image u-logo-image-1" alt="">
+        <div class="navItems">
+
+            <div id="flex-first-row">
+                <div id="Username">
+                    <p>Здравей, <b th:text="${username}"></b></p>
+                </div>
+                <select name="language" id="language" title="language" onchange="changeLanguage()">
+                    <option value="english">английски</option>
+                    <option value="bulgarian">български</option>
+                </select>
+            </div>
+            
+            <div id="flex-second-row">
+                <div th:if="${not isAdmin}" id="shopping-cart">
+                    <a th:href="@{/bg/shoes/checkout}">
+                        <img id="cart-image" src="/images/shopping-cart-80.png" alt="" style="size: 20px;"/>
+                    </a>
+                </div>
+                <div id="likesCount">
+                    <a th:href="@{/bg/shoes/favorites}">
+                        <!-- <span class="glyphicon glyphicon-heart"></span> -->
+                        <span>&#10084;</span>
+                        <i style="position: absolute; z-index: 10;" th:text="${countOfFavorites}"></i>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <div>
+        <ul class="secondaryNav">
+            <li><a href="/bg">Начало</a></li>
+            <li th:if="${isAdmin}"><a href="/bg/admin">Админска страница</a></li>
+            <li th:if="${not isAdmin}"><a href="/bg/shoes/get">Главна стр.</a></li>
+            <li><a href="/bg/sneakers">Обувки</a></li>
+            <li><a href="/bg/clothes">Дрехи</a></li>
+            <li><a href="/bg/auction">Търгове</a></li>
+            <li id="icon">
+                <a href="javascript:void(0);" title="secondaryNavResp" class="icon" onclick="makeSecondaryNavResponsive()">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </li>
+        </ul>    
+    </div>
+</header>
+</body>
+</html>
