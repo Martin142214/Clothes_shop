@@ -15,6 +15,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.example.demo.test.Models.enums.Conditions;
+import com.example.demo.test.Models.classModels.FileDB;
+import com.example.demo.test.Models.classModels.Sizes;
+import com.example.demo.test.Models.entities.Shoe;
+import com.example.demo.test.Models.enums.Brands;
+import com.example.demo.test.Models.enums.Colors;
+
 import java.util.List;
 
 @Controller
@@ -92,7 +99,7 @@ public class OfferController {
 
         _clothesService.removeAllFilters();
 
-        return "sneakers_list.html";
+        return "User_pages/sneakers_list.html";
     }
 
 
