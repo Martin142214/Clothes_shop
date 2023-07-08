@@ -41,14 +41,14 @@
    <body onload="addFadeIn('.carousel'); setLanguage()" onscroll="addFadeIn('.carousel')">
       <div th:if="${isSignedIn}">
          <div th:if="${not isBgLang}">
-            <header th:replace="/navigation_bar.html :: body"></header>
+            <header th:replace="/Navbar/navigation_bar.html :: body"></header>
         </div>
         <div th:if="${isBgLang}">
-            <header th:replace="/navigation_bar_bg.html :: body"></header>
+            <header th:replace="/Navbar/navigation_bar_bg.html :: body"></header>
         </div>
       </div>
       <div th:unless="${isSignedIn}">
-         <header th:replace="/logged_out_navigation_bar.html :: body"></header>
+         <header th:replace="/Navbar/logged_out_navigation_bar.html :: body"></header>
       </div>
       <section>
       <!-- banner bg main start -->
