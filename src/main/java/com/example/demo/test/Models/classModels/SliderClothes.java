@@ -1,9 +1,9 @@
-package com.example.demoTEST2.models.classModels;
+package com.example.demo.test.Models.classModels;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-import com.example.demoTEST2.models.entities.Clothes;
+import com.example.demo.test.Models.entities.Clothes;
 
 public class SliderClothes {
 
