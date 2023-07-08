@@ -359,7 +359,7 @@
                                  <h4 class="brand_text" th:text="${shoe.brand}"></h4>
                                  <h4 class="model_text" th:text="${shoe.model}"></h4>
                                  <p class="price_text">Price  <span style="color: #262626;" th:text="${shoe.price + '$'}"></span></p>
-                                 <div class="tshirt_img"><img style="height: 250px;" th:src="|/images/${shoe.mainImageUrl}|"></div>
+                                 <div class="tshirt_img"><img style="height: 250px;" th:src="|/images/${shoe.mainImageUrl}|" alt="t-shirt"></div>
                                  <div class="btn_main">
                                     <div class="buy_bt"><a th:href="@{${isBgLang} ? |/bg/shoes/${shoe.id}| : |/shoes/${shoe.id}| }">Buy Now</a></div>
                                  </div>
@@ -401,7 +401,7 @@
                                  <h4 class="brand_text" th:text="${shoe.brand}"></h4>
                                  <h4 class="model_text" th:text="${shoe.model}"></h4>
                                  <p class="price_text">Price  <span style="color: #262626;" th:text="${shoe.price + '$'}"></span></p>
-                                 <div class="tshirt_img"><img style="height: 250px;" th:src="|/images/${shoe.mainImageUrl}|"></div>
+                                 <div class="tshirt_img"><img style="height: 250px;" th:src="|/images/${shoe.mainImageUrl}|" alt="tshirt"></div>
                                  <div class="btn_main">
                                     <div class="buy_bt"><a th:href="@{${isBgLang} ? |/bg/shoes/${shoe.id}| : |/shoes/${shoe.id}| }">Buy Now</a></div>
                                  </div>
@@ -444,7 +444,7 @@
                                  <h4 class="brand_text" th:text="${shoe.brand}"></h4>
                                  <h4 class="model_text" th:text="${shoe.model}"></h4>
                                  <p class="price_text">Price  <span style="color: #262626;" th:text="${shoe.price + '$'}"></span></p>
-                                 <div class="tshirt_img"><img style="height: 250px;" th:src="|/images/${shoe.mainImageUrl}|"></div>
+                                 <div class="tshirt_img"><img style="height: 250px;" th:src="|/images/${shoe.mainImageUrl}|" alt="t-shirt"></div>
                                  <div class="btn_main">
                                     <div class="buy_bt"><a th:href="@{${isBgLang} ? |/bg/shoes/${shoe.id}| : |/shoes/${shoe.id}| }">Buy Now</a></div>
                                  </div>
@@ -610,7 +610,7 @@
       <!-- footer section start -->
       <div class="footer_section layout_padding">
          <div class="container">
-            <div class="footer_logo"><img src="/images/StockM-logo.png"></div>
+            <div class="footer_logo"><img src="/images/StockM-logo.png" alt="StockM logo"></div>
             <div class="input_bt">
                <span class="mail_bt">mi_kalonkin@mail.bg</span>
                <span class="subscribe_bt" id="basic-addon2"><a href="#">Subscribe</a></span>
