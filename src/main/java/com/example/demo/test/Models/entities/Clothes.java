@@ -1,5 +1,7 @@
 package com.example.demo.test.Models.entities;
 
+import com.example.demo.test.Models.classModels.FileDB;
+import com.example.demo.test.Models.classModels.Sizes;
 import com.example.demo.test.Models.enums.ClothesBrands;
 import com.example.demo.test.Models.enums.Colors;
 import java.io.Serializable;
