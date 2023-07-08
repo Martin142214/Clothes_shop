@@ -1,0 +1,87 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" th:href="@{/navbar.css}">
+    <link rel="stylesheet" th:href="@{/imageSlider.css}">
+    <link rel="stylesheet" th:href="@{/shoes_list.css}">
+    <link rel="stylesheet" th:href="@{/footer.css}">
+    <script src="/scripts/search_shoes.js"></script>
+    <script src="/scripts/shoes_crud_modals.js"></script>
+    <script src="/scripts/open_sideNavigation.js"></script>
+    <script src="/scripts/sneakers_cards_align.js"></script>
+    <title>Shoes</title>
+</head>
+<body onload="setLanguage(); alignCards()">
+<div th:if="${not isBgLang}">
+    <header th:replace="/navigation_bar.html :: body"></header>
+</div>
+<div th:if="${isBgLang}">
+    <header th:replace="/navigation_bar_bg.html :: body"></header>
+</div>
+<section>
+<div class="slideshow-container">
+    
+    <div class="mySlides fade" th:each="shoe : ${sliderShoes}">
+        <div class="numbertext"></div>
+        <img th:src="|/images/${shoe.mainImageUrl}|" alt="image for slides">
+        <div class="text" th:text="${shoe.brand + ' ' + shoe.model}"></div>
+    </div>
+    <a class="prev" onclick="plusSlides(-1)">❮</a>
+    <a class="next" onclick="plusSlides(1)">❯</a>
+    
+    <br>
+
+    <div id="dots" style="text-align:center; top: 20;">
+        <span class="dot" th:each="shoe : ${sliderShoes}" th:onclick="currentSlide([[${shoeStat.index}]])"></span> 
+    </div>  
+</div>
+
+<div class="carsSection" style="position: relative; top: 200;">
+
+    <div class="justify-content mt-2" id="searchBarAndTextDiv">
+        <div style="margin-left: 10px; margin-right: auto;">
+            <div class="justify-content mt-2" id="recommendedTextField">
+                <!--
+                    <button class="btn btn-primary" onclick="document.getElementById('id01').style.display='block'">+</button>
+                    <div th:replace="/create_modal_container.html"></div> 
+                -->
+            <h5 th:text="${language == 'english'} ? 'Recommended for you' : 'Препоръчани за теб'"></h5>
+            <img th:src="|/images/question-mark-circle.png|" alt="question icon" style="width: 20px; height: 20px; top: 2; left: 10; position: relative;">
+            </div>
+    </div>
+
+    <div style="margin-right: 50px;">
+        <label th:text="${language == 'english'} ? 'Search bar' : 'Поле за търсене'"></label>
+        <br>
+        <input type="text" id="myInput" onkeyup="searchFunction()" placeholder=". . ." title="Type in a name">
+    </div>
+</div>
+<div class="row">
+    <h4 id="noResults" style="display: none;">No matches found!</h4>
+    <div th:each="shoe : ${shoes}" class="col-12 col-md-3 mt-5 mb-4">
+        <a th:href="@{${isBgLang} ? |/bg/shoes/${shoe.id}| : |/shoes/${shoe.id}| }">    
+        <div class="card">
+            <div class="card-header">
+                <img th:src="|/images/${shoe.mainImageUrl}|" alt="image for car" style="float: right;">
+            </div>
+            <div class="card-body">
+                <p th:text="${shoe.brand + ' ' + shoe.model}"></p>
+                <p class="card-text" >ReleaseDate: <b th:text="${shoe.releaseDate}"></b></p>
+                <p class="card-text">Price: <b th:text="${shoe.price} + '$'"></b></p>
+            </div>        
+        </div>
+        </a>
+    </div>
+</div>
+
+</div>
+</section>
+
+<div th:replace="/footer.html :: footer"></div>
+
+<script src="/scripts/imageSlider.js"></script>
+</body>
+</html>
