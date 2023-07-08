@@ -1,0 +1,63 @@
+.card {
+    cursor: pointer;
+}
+
+.card:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+section {
+    margin: 50px;
+}
+
+.col-12 a {
+    text-decoration: none; 
+    color: black;
+}
+
+.mySlides img {
+    width: 100%;
+    height: 700px;
+    object-fit: cover;
+}
+
+#searchBarAndTextDiv {
+    display: flex;
+}
+
+#recommendedTextField {
+    display: flex;
+}
+
+#createBtnsDiv {
+    display: flex;
+}
+
+@media screen and (max-width: 1000px) {
+    section {
+        margin: 10px;
+    }
+
+    .mySlides img {
+        height: auto;
+    }
+
+    #searchBarAndTextDiv {
+        display: block;
+    }
+
+    #recommendedTextField {
+        display: inline-flex;
+        margin-bottom: 20px;
+    }
+
+    #createBtnsDiv {
+        display: block;
+    }
+  }
+
+  @media screen and (max-width: 1000px) {
+    #addClothesBtn, #addShoesBtn {
+        width: 100%;
+    }
+  }
