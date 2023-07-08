@@ -9,12 +9,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 import com.example.demo.test.Services.ClothesService;
 import com.example.demo.test.Services.ShoeService;
 import com.example.demo.test.Services.UserService;
 
 @Controller
-@RequestMapping(value = {"{lang}/shoes/get", "/shoes/get"})
 @PreAuthorize("hasRole('ROLE_USER')")
 public class MainController {
 
@@ -52,6 +53,31 @@ public class MainController {
         model.addAttribute("isBgLang", _shoeService.isLanguageBulgarian());
 
         return "index.html";
+    }
+
+    @RequestMapping(value = {"{lang}/shoes/get", "/shoes/get"}, method = RequestMethod.GET)
+    public String returnShoesMainPage(Model model, HttpServletRequest request){
+        this._shoeService.currentControllerUrl = request.getRequestURI().toString();
+
+        var sliderShoes = _shoeService.getAll()
+                                .stream()
+                                .limit(6)
+                                .collect(Collectors.toList());
+        //var appProperty = System.getProperty("home.welcome");
+        //model.addAttribute("appProperty", appProperty);
+        model.addAttribute("sliderShoes", sliderShoes);
+        model.addAttribute("shoesCount", sliderShoes.size());
+        model.addAttribute("shoes", _shoeService.getAll().stream().filter(shoe -> shoe.isAuctionOffer != true).limit(8).toList());
+        model.addAttribute("countOfFavorites", _shoeService.getCountOfFavorites());
+        model.addAttribute("username", _userService.getCurrentUser().username);
+        model.addAttribute("isAdmin", _userService.isAdmin());
+        model.addAttribute("isBgLang", _shoeService.isLanguageBulgarian());
+        //_carService.setLanguage(request, model);
+
+        _shoeService.removeAllFilters();
+        _clothesService.removeAllFilters();
+        
+        return "User_pages/shoes_list.html";
     }
 
     
