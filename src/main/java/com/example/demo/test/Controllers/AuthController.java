@@ -57,7 +57,7 @@ public class AuthController {
 
     @GetMapping("/user/register")
     @PreAuthorize("!hasRole('ROLE_ADMIN') AND !hasRole('ROLE_USER')")
-    public String showRegistrationForm(Model model) { return "register_form.html"; }   
+    public String showRegistrationForm(Model model) { return "Auth_pages/register_form.html"; }   
 
     @GetMapping("/user/success")
     public String successfulAuth(Model model) { return "register_success.html"; }
@@ -150,7 +150,7 @@ public class AuthController {
     @GetMapping("/user/login")
     public String showLoginForm(Model model) {
      
-        return "login_form.html";
+        return "Auth_pages/login_form.html";
     }
 
     @PostMapping("/user/{id}/delete")

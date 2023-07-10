@@ -15,7 +15,6 @@ import com.example.demo.test.Services.ShoeService;
 import com.example.demo.test.Services.UserService;
 
 @Controller
-@PreAuthorize("hasRole('ROLE_USER')")
 public class MainController {
 
     private ShoeService _shoeService;
@@ -31,7 +30,7 @@ public class MainController {
         this._shoeService = shoeService;
     }
 
-    @GetMapping(value = {"/bg", ""})
+    @RequestMapping(value = {"{lang}/", "/"})
     public String viewHomePage(HttpServletRequest request, Model model) {
         this._shoeService.currentControllerUrl = request.getRequestURI().toString();
         boolean isCurrentUserAuthenticated = true; //= SecurityContextHolder.getContext().getAuthentication().isAuthenticated();
@@ -51,10 +50,11 @@ public class MainController {
         model.addAttribute("isSignedIn", isCurrentUserAuthenticated);
         model.addAttribute("isBgLang", _shoeService.isLanguageBulgarian());
 
-        return "index.html";
+        return "User_pages/index.html";
     }
 
-    @RequestMapping(value = {"{lang}/shoes/get", "/shoes/get"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/shoes/get"}, method = RequestMethod.GET)
+    @PreAuthorize("hasRole('ROLE_USER')")
     public String returnShoesMainPage(Model model, HttpServletRequest request){
         this._shoeService.currentControllerUrl = request.getRequestURI().toString();
 
