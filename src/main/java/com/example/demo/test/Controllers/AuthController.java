@@ -57,10 +57,10 @@ public class AuthController {
 
     @GetMapping("/user/register")
     @PreAuthorize("!hasRole('ROLE_ADMIN') AND !hasRole('ROLE_USER')")
-    public String showRegistrationForm(Model model) { return "Auth_pages/register_form.html"; }   
+    public String showRegistrationForm(Model model) { return "auth_pages/register_form.html"; }   
 
     @GetMapping("/user/success")
-    public String successfulAuth(Model model) { return "register_success.html"; }
+    public String successfulAuth(Model model) { return "auth_pages/register_success.html"; }
     
     @PostMapping("/user/register")
     public RedirectView registerNewUserAccount(String username, String email, String password) throws Exception {
@@ -150,7 +150,7 @@ public class AuthController {
     @GetMapping("/user/login")
     public String showLoginForm(Model model) {
      
-        return "Auth_pages/login_form.html";
+        return "auth_pages/login_form.html";
     }
 
     @PostMapping("/user/{id}/delete")

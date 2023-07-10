@@ -86,7 +86,7 @@ public class AdminController {
         _shoeService.removeAllFilters();
         _clothesService.removeAllFilters();
 
-        return "admin_page.html";
+        return "admin/admin_page.html";
     }
 
     @PostMapping("/user/{id}/edit")

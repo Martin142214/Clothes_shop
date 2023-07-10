@@ -50,7 +50,7 @@ public class MainController {
         model.addAttribute("isSignedIn", isCurrentUserAuthenticated);
         model.addAttribute("isBgLang", _shoeService.isLanguageBulgarian());
 
-        return "User_pages/index.html";
+        return "user_pages/index.html";
     }
 
     @RequestMapping(value = {"/shoes/get"}, method = RequestMethod.GET)
@@ -76,7 +76,7 @@ public class MainController {
         _shoeService.removeAllFilters();
         _clothesService.removeAllFilters();
         
-        return "User_pages/shoes_list.html";
+        return "user_pages/shoes_list.html";
     }
 
     

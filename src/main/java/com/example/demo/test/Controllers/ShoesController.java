@@ -112,7 +112,7 @@ public class ShoesController {
 
         _shoeService.removeAllFilters();
         
-        return "product_page.html";
+        return "user_pages/product_page.html";
     }
 
     @GetMapping("/checkout")
@@ -149,7 +149,7 @@ public class ShoesController {
         _shoeService.removeAllFilters();
         _clothesService.removeAllFilters();
 
-        return "checkout-template/checkout.html";
+        return "checkout-templates/checkout.html";
     }
 
     @GetMapping("/checkout/completed")
@@ -186,7 +186,7 @@ public class ShoesController {
         model.addAttribute("username", _userService.getCurrentUser().username);
         model.addAttribute("isAdmin", _userService.isAdmin()); 
         _cartRepository.delete(cartProductForUser.get());
-        return "checkout-template/purchase_completed.html";
+        return "checkout-templates/purchase_completed.html";
     }
 
     @PostMapping("/{id}/addToCart")
@@ -261,7 +261,7 @@ public class ShoesController {
         model.addAttribute("isAdmin", _userService.isAdmin());
         model.addAttribute("isBgLang", _shoeService.isLanguageBulgarian());
 
-        return "favorites_list.html";
+        return "user_pages/favorites_list.html";
     }
 
     @PostMapping("/favorites/delete/{id}")
