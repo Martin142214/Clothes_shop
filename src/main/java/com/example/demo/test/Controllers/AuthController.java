@@ -17,31 +17,22 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.example.demo.test.models.entities.CartProduct;
-import com.example.demo.test.models.entities.Favorite;
-import com.example.demo.test.models.entities.Privilege;
-import com.example.demo.test.models.entities.Role;
-import com.example.demo.test.models.entities.User;
-import com.example.demo.test.repositories.CartRepository;
-import com.example.demo.test.repositories.FavoritesRepository;
-import com.example.demo.test.repositories.authRepositories.PrivilegeRepository;
-import com.example.demo.test.repositories.authRepositories.RoleRepository;
-import com.example.demo.test.repositories.authRepositories.UserRepository;
-import com.example.demo.test.services.ClothesService;
-import com.example.demo.test.services.ShoeService;
-import com.example.demo.test.services.UserService;
+import com.example.demo.test.Models.entities.CartProduct;
+import com.example.demo.test.Models.entities.Favorite;
+import com.example.demo.test.Models.entities.Privilege;
+import com.example.demo.test.Models.entities.Role;
+import com.example.demo.test.Models.entities.User;
+import com.example.demo.test.Repositories.CartRepository;
+import com.example.demo.test.Repositories.FavoritesRepository;
+import com.example.demo.test.Repositories.authRepositories.PrivilegeRepository;
+import com.example.demo.test.Repositories.authRepositories.RoleRepository;
+import com.example.demo.test.Repositories.authRepositories.UserRepository;
 
 @Controller
 public class AuthController {
 
     @Autowired
     private UserRepository _userRepository;
-
-    @Autowired 
-    private UserService _userService;
-
-    @Autowired
-    private ShoeService _shoeService;
 
     @Autowired
     private CartRepository _cartRepository;
@@ -59,9 +50,6 @@ public class AuthController {
     private PasswordEncoder passwordEncoder;
 
     private final String mainControllerUrl = "http://localhost:8080";
-
-    @Autowired
-    private ClothesService _clothesService;
 
     public AuthController() {
         

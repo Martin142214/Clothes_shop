@@ -3,7 +3,6 @@ package com.example.demo.test.Controllers;
 import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,7 +32,7 @@ public class MainController {
     }
 
     @GetMapping(value = {"/bg", ""})
-    public String viewHomePage(HttpRequest request, Model model) {
+    public String viewHomePage(HttpServletRequest request, Model model) {
         this._shoeService.currentControllerUrl = request.getRequestURI().toString();
         boolean isCurrentUserAuthenticated = true; //= SecurityContextHolder.getContext().getAuthentication().isAuthenticated();
         try {
