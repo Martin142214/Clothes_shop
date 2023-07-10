@@ -16,7 +16,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.example.demo.test.Models.enums.Conditions;
+import com.example.demo.test.Services.ClothesService;
+import com.example.demo.test.Services.FilesService;
+import com.example.demo.test.Services.ShoeService;
+import com.example.demo.test.Services.UserService;
 import com.example.demo.test.Models.classModels.FileDB;
+import com.example.demo.test.Models.classModels.Filter;
 import com.example.demo.test.Models.classModels.Sizes;
 import com.example.demo.test.Models.entities.Shoe;
 import com.example.demo.test.Models.enums.Brands;
