@@ -1,0 +1,288 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" th:href="@{/navbar.css}">
+    <!--<link rel="stylesheet" th:href="@{/imageSlider.css}">-->
+    <link rel="stylesheet" th:href="@{/css/modal-container.css}">
+    <link rel="stylesheet" th:href="@{/css//shoes_list.css}">
+    <link rel="stylesheet" th:href="@{/css/coin_flip.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+    <script src="/scripts/search_shoes_clothes_admin.js"></script>
+    <script src="/scripts/shoes_crud_modals.js"></script>
+    <script src="/scripts/clothes_crud_modals.js"></script>
+    <script src="/scripts/open_sideNavigation.js"></script>
+    <script src="/scripts/show_image_inputs.js"></script>
+    <script src="/scripts/user_crud_modals.js"></script>
+    <script src="/scripts/sneakers_cards_align.js"></script>
+    <title>Shoes main page</title>
+
+    <style>
+      html, body {
+        font-family: var(--bs-font-sans-serif);
+      }
+      label {
+          margin-top: 20px;
+      }
+  </style>
+</head>
+<body onload="setLanguage(); alignCards()" class="w3-light-grey">
+<div th:if="${not isBgLang}">
+    <header th:replace="/navigation_bar.html :: body"></header>
+</div>
+<div th:if="${isBgLang}">
+    <header th:replace="/navigation_bar_bg.html :: body"></header>
+</div>
+<section id="sectionForAdminFunc">
+    <!-- Page Container -->
+<div class="w3-content w3-margin-top" style="max-width:1400px;">
+
+    <!-- The Grid -->
+    <div class="w3-row-padding">
+    
+      <!-- Left Column -->
+      <div class="w3-third">
+      
+        <div class="w3-white w3-text-grey w3-card-4">
+          <div class="w3-display-container">
+            <img src="/images/user.png" style="width:100%" alt="Avatar">
+            <div class="w3-display-bottomleft w3-container w3-text-black">
+              <h2 th:text="${adminUser.username}"></h2>
+            </div>
+          </div>
+          <div class="w3-container">
+            <span  style="cursor: pointer; float: right; padding: 10px" 
+                            th:onclick="openUserEditModal([[${adminUser.id}]], [[${adminUser.username}]], 
+                                                    [[${adminUser.email}]])" th:text="${isBgLang} ? 'Редактирай' : 'Edit profile'">Edit profile</span>
+            <div th:replace="/user_edit_modal_container.html"></div>
+            <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i>Admin</p>
+            <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>Veliko Tarnovo, Bulgaria</p>
+            <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i><b th:text="${adminUser.email}"></b></p>
+            <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>1224435534</p>
+            <hr>
+  
+            <p class="w3-large"><b th:text="${isBgLang} ? 'Приходи' : 'Income status'"><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i></b></p>
+            <p>Adidas shoes</p>
+            <div class="w3-light-grey w3-round-xlarge w3-small">
+              <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:90%">90%</div>
+            </div>
+            <p>Nike shoes</p>
+            <div class="w3-light-grey w3-round-xlarge w3-small">
+              <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:80%">
+                <div class="w3-center w3-text-white">80%</div>
+              </div>
+            </div>
+            <p>All shoes / sold shoes</p>
+            <div class="w3-light-grey w3-round-xlarge w3-small">
+              <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:75%">75%</div>
+            </div>
+            <p>Given / taken</p>
+            <div class="w3-light-grey w3-round-xlarge w3-small">
+              <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:50%">50%</div>
+            </div>
+            <br>
+  
+            <!--<p class="w3-large w3-text-theme"><b><i class="fa fa-globe fa-fw w3-margin-right w3-text-teal"></i>Languages</b></p>
+            <p>English</p>
+            <div class="w3-light-grey w3-round-xlarge">
+              <div class="w3-round-xlarge w3-teal" style="height:24px;width:100%"></div>
+            </div>
+            <p>Spanish</p>
+            <div class="w3-light-grey w3-round-xlarge">
+              <div class="w3-round-xlarge w3-teal" style="height:24px;width:55%"></div>
+            </div>
+            <p>German</p>
+            <div class="w3-light-grey w3-round-xlarge">
+              <div class="w3-round-xlarge w3-teal" style="height:24px;width:25%"></div>
+            </div>
+            <br> -->
+          </div>
+        </div><br>
+  
+      <!-- End Left Column -->
+      </div>
+  
+      <!-- Right Column -->
+      <div class="w3-twothird">
+      
+        <div class="w3-container w3-card w3-white w3-margin-bottom">
+          <h2 class="w3-text-grey w3-padding-16" th:text="${isBgLang} ? 'Поръчките днес' : 'Daily orders'"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i></h2>
+          <div class="w3-container" th:each="order : ${dailyOrders}">
+            <h5 class="w3-opacity"><b th:text="${order.orderNumber}"></b></h5>
+            <h6 class="w3-text-teal">Purchased by: <span class="w3-tag w3-teal w3-round" th:text="${order.username}"></span></h6>
+            <h6 class="w3-text-teal">Order sum: <span class="w3-tag w3-teal w3-round" th:text="${order.priceSummaryFromOrder}"></span></h6>
+            <!-- <h5 class="w3-opacity"><b>Front End Developer / w3schools.com</b></h5>
+            <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Jan 2015 - <span class="w3-tag w3-teal w3-round">Current</span></h6>
+            <p>Lorem ipsum dolor sit amet. Praesentium magnam consectetur vel in deserunt aspernatur est reprehenderit sunt hic. Nulla tempora soluta ea et odio, unde doloremque repellendus iure, iste.</p>
+            -->
+            <hr>
+          </div>
+          <!--<div class="w3-container">
+            <h5 class="w3-opacity"><b>Web Developer / something.com</b></h5>
+            <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Mar 2012 - Dec 2014</h6>
+            <p>Consectetur adipisicing elit. Praesentium magnam consectetur vel in deserunt aspernatur est reprehenderit sunt hic. Nulla tempora soluta ea et odio, unde doloremque repellendus iure, iste.</p>
+            <hr>
+          </div>
+          <div class="w3-container">
+            <h5 class="w3-opacity"><b>Graphic Designer / designsomething.com</b></h5>
+            <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Jun 2010 - Mar 2012</h6>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p><br>
+          </div> -->
+          <h2 class="w3-text-grey w3-padding-16"><span th:text="${isBgLang} ? 'Общо: ' + ${dailyTurnOver} : 'Total: ' + ${dailyTurnOver}"></span></h2>
+        </div>
+  
+        <div class="w3-container w3-card w3-white">
+          <h2 class="w3-text-grey w3-padding-16" th:text="${isBgLang} ? 'Потребители' : 'All users'"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i></h2>
+          <div class="w3-container" th:each="user : ${users}">
+            <div style="display: flex;">
+                <h5 class="w3-opacity">Username: <b th:text="${user.username}"></b></h5>
+                <span style="margin-left: 20px; cursor: pointer;" th:onclick="openUserDeleteModal([[${user.id}]], [[${user.username}]])">&times;</span>
+                <div th:replace="/user_delete_modal_container.html"></div>
+            </div>
+            <h6 class="w3-text-teal">
+                <i class="fa fa-calendar fa-fw w3-margin-right"></i>
+                <b th:text="${user.email}"></b>
+            </h6>
+            <p th:each="role : ${user.roles}" th:text="${role.name}"></p>
+            <hr>
+          </div>
+          <!--<div class="w3-container">
+            <h5 class="w3-opacity"><b>London Business School</b></h5>
+            <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2013 - 2015</h6>
+            <p>Master Degree</p>
+            <hr>
+          </div>
+          <div class="w3-container">
+            <h5 class="w3-opacity"><b>School of Coding</b></h5>
+            <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2010 - 2013</h6>
+            <p>Bachelor Degree</p><br>
+          </div> -->
+        </div>
+  
+      <!-- End Right Column -->
+      </div>
+      
+    <!-- End Grid -->
+    </div>
+    
+    <!-- End Page Container -->
+  </div>
+</section>
+<section id="sectionForAdminItems">
+    <div class="shoesSection" style="position: relative; top: 200;">
+
+        <div id="createBtnsDiv" class="justify-content mt-2">
+            <div style="margin-left: 10px; margin-right: auto;">
+                <button class="btn btn-primary" id="addShoesBtn" onclick="document.getElementById('id06').style.display='block'; showOneImageInput()"><span th:text="${isBgLang} ? 'Добави обувки' : 'Add shoes'"></span></button>
+                <div th:replace="/create_shoe_modal_container.html :: body"></div>
+
+                <button class="btn btn-primary" id="addClothesBtn" onclick="document.getElementById('id07').style.display='block';"><span th:text="${isBgLang} ? 'Добави дрехи' : 'Add clothes'"></span></button>
+                <div th:replace="/clothes-templates/create_clothes_modal_container.html :: body"></div>
+                <!--<div class="d-flex justify-content mt-2">               
+                    <h5 th:text="${language == 'english'} ? 'Recommended for you' : 'Препоръчани за теб'"></h5>
+                    <img th:src="|/images/question-mark-circle.png|" alt="question icon" style="width: 20px; height: 20px; top: 2; left: 10; position: relative;">
+                </div>-->
+            </div>
+        <!-- <h2 id="appProperty" th:utext="#{home.welcome}">Welcome to our grocery store!</h2> -->
+        <div style="margin-right: 50px;">
+            <label th:text="${isBgLang} ? 'Search bar' : 'Поле за търсене'"></label>
+            <br>
+            <input type="text" id="myInput" onkeyup="searchFunction()" placeholder=". . ." title="Type in a name">
+        </div>
+    </div>
+
+    <div id="coin" onclick="flipCoin()">
+      <div class="side-a" th:text="${isBgLang} ? 'Обувки' : 'Shoes'"></div>
+      <div class="side-b" th:text="${isBgLang} ? 'Дрехи' : 'Clothes'"></div>
+    </div>
+
+    <div id="shoesContainer">
+
+      <div class="row">
+        <!--<h1 id="shoesDeals" style="text-align: center;" th:text="${isBgLang} ? 'Обувки' : 'Shoes'"></h1> -->
+  
+          
+          <div th:each="shoe : ${shoes}" class="col-12 col-md-2 mt-5 mb-4">
+              <div class="card">
+                  <div class="card-header">
+                      <img th:src="|/images/${shoe.mainImageUrl}|" alt="image for shoe" style="float: right;">
+                  </div>
+                  <div class="card-body" th:attr="style=${shoe.isAuctionOffer} ? 'background-color:gold' : 'background-color:white' ">
+                      <p th:text="${shoe.brand + ' ' + shoe.model}"></p>
+                      <p class="card-text" >ReleaseDate: <b th:text="${shoe.releaseDate}"></b></p>
+                      <p class="card-text">Price: <b th:text="${shoe.price} + '$'"></b></p>
+                  </div>
+                  <div class="card-footer">
+                      <div style="padding-bottom: 10px;">
+                          <button class="btn btn-sm btn-outline-primary" style="width: 100%;" 
+                              th:onclick="openShoeEditModal([[${shoe.id}]], [[${shoe.brand}]], 
+                                                      [[${shoe.model}]], [[${shoe.price}]], 
+                                                      [[${shoe.releaseDate}]], [[${shoe.mainImageUrl}]])" th:text="${isBgLang} ? 'Редактирай' : 'Edit'"></button>
+                      <div th:replace="/edit_shoe_modal_container.html"></div>
+                      </div>
+                      <div>
+                          <button class="btn btn-sm btn-outline-danger" style="width: 100%;" th:onclick="openShoeDeleteModal([[${shoe.id}]], [[${shoe.brand}]], 
+                                                                                                                           [[${shoe.model}]], [[${shoe.releaseDate}]], 
+                                                                                                                           [[${shoe.colorSpecification}]], [[${shoe.mainImageUrl}]])" th:text="${isBgLang} ? 'Изтрий' : 'Delete'">Delete</button>
+                          <div th:replace="/delete_shoe_modal_container.html"></div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+    </div>
+
+  <div id="clothesContainer" style="display: none;">
+
+    <div class="row">
+      <!--<h1 id="clothesDeals" style="text-align: center;" th:text="${isBgLang} ? 'Дрехи' : 'Clothes'"></h1>-->
+
+      <div th:each="cloth : ${clothes}" class="col-12 col-md-2 mt-5 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <img th:with="image=${cloth.images[#lists.size(cloth.images) - 1]}" th:src="|/images/${image.imagePath}|" alt="image for cloth" style="float: right;">
+            </div>
+            <div class="card-body">
+                <p th:text="${cloth.brand + ' ' + cloth.model}"></p>
+                <p class="card-text" >ReleaseDate: <b th:text="${cloth.releaseDate}"></b></p>
+                <p class="card-text">Price: <b th:text="${cloth.price} + '$'"></b></p>
+            </div>
+            <div class="card-footer">
+                <div style="padding-bottom: 10px;">
+                    <button class="btn btn-sm btn-outline-primary" style="width: 100%;" 
+                        th:onclick="openClothesEditModal([[${cloth.id}]], [[${cloth.brand}]], 
+                                                [[${cloth.model}]], [[${cloth.price}]], 
+                                                [[${cloth.releaseDate}]], [[${cloth.images}]])" th:text="${isBgLang} ? 'Редактирай' : 'Edit'"></button>
+                    <div th:replace="/clothes-templates/edit_cloth_modal_container.html"></div>
+                </div>
+                <div>
+                    <button class="btn btn-sm btn-outline-danger" style="width: 100%;" th:onclick="openClothesDeleteModal([[${cloth.id}]], [[${cloth.brand}]], 
+                                                                                                                     [[${cloth.model}]], [[${cloth.releaseDate}]], 
+                                                                                                                     [[${cloth.colorSpecification}]], 
+                                                                                                                     [[${cloth.images}]])" th:text="${isBgLang} ? 'Изтрий' : 'Delete'"></button>
+                    <div th:replace="/clothes-templates/delete_clothes_modal_container.html"></div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div>
+    <h2 id="noResults" style="display: none; margin-top: 50px; text-align: center;" th:text="${isBgLang} ? 'Няма съвпадения' : 'No matches found'"></h2>
+  </div>
+
+</div>
+</section>
+
+<div th:replace="/footer.html :: footer"></div>
+
+<script src="/scripts/create_clothes_images_validation.js"></script>
+<script src="/scripts/flip_coin.js"></script>
+</body>
+</html>
