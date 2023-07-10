@@ -29,6 +29,7 @@ import com.example.demo.test.Repositories.CartRepository;
 import com.example.demo.test.Repositories.ClothesRepository;
 import com.example.demo.test.Repositories.ShoeRepository;
 import com.example.demo.test.Repositories.authRepositories.UserRepository;
+import com.example.demo.test.Services.CartService;
 import com.example.demo.test.Services.ClothesService;
 import com.example.demo.test.Services.ShoeService;
 import com.example.demo.test.Services.UserService;
@@ -42,7 +43,7 @@ public class ShoesController {
     private CartRepository _cartRepository;
 
     @Autowired
-    private ClothesService _cartService;
+    private CartService _cartService;
 
     @Autowired
     private UserRepository _userRepository;
