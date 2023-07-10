@@ -83,10 +83,10 @@ public class AdminController {
         model.addAttribute("isBgLang", _shoeService.isLanguageBulgarian());
 
         //clear filters on clothes page when go to admin page
-        _shoeService.removeAllFilters();
-        _clothesService.removeAllFilters();
+        // _shoeService.removeAllFilters();
+        // _clothesService.removeAllFilters();
 
-        return "admin/admin_page.html";
+        return "/admin/admin_page.html";
     }
 
     @PostMapping("/user/{id}/edit")
