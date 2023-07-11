@@ -1,4 +1,4 @@
-package com.example.demo.test.Models.classModels;
+package com.example.demo.test.models.classModels;
 
 public class Sizes {
 
