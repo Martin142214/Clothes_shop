@@ -1,6 +1,6 @@
-package com.example.demo.test.Models.cartModels;
+package com.example.demo.test.models.cartModels;
 
-import com.example.demo.test.Models.enums.ClothesBrands;
+import com.example.demo.test.models.enums.ClothesBrands;
 
 public class CartClothesModel {
     public String id;

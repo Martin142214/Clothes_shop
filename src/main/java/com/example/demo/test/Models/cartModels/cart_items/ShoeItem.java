@@ -1,6 +1,6 @@
-package com.example.demo.test.Models.cartModels.cart_items;
+package com.example.demo.test.models.cartModels.cart_items;
 
-import com.example.demo.test.Models.cartModels.CartShoeModel;
+import com.example.demo.test.models.cartModels.CartShoeModel;
 
 public class ShoeItem {
     public CartShoeModel product;

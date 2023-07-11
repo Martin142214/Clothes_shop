@@ -1,7 +1,7 @@
-package com.example.demo.test.Models.cartModels;
+package com.example.demo.test.models.cartModels;
 
-import com.example.demo.test.Models.enums.Brands;
-import com.example.demo.test.Models.enums.Conditions;
+import com.example.demo.test.models.enums.Brands;
+import com.example.demo.test.models.enums.Conditions;
 
 public class CartShoeModel {
     
