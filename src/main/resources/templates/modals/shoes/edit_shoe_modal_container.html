@@ -16,7 +16,7 @@
     <div class="container">
       <label><b>Brand</b></label>
       <select class="form-control" id="brandOptions" name="brand" title="brand">
-        <option id="brand" th:each="brandOpt : ${T(com.example.demoTEST2.models.enums.Brands).values()}" th:text="${brandOpt}" th:value="${brandOpt}"></option>
+        <option id="brand" th:each="brandOpt : ${T(com.example.demo.test.models.enums.Brands).values()}" th:text="${brandOpt}" th:value="${brandOpt}"></option>
       </select>
       
       <label><b>Model</b></label>
