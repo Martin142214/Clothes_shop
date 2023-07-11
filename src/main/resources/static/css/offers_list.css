@@ -1,0 +1,209 @@
+section {
+    margin: 0 200px;
+    top: 50;
+    position: relative;
+}
+
+#leftColumn {
+    display: block;
+    float: left;
+    padding: 10px;
+    height: fit-content;
+    width: 25%;
+}
+
+#rightColumn {
+    display: block;
+    padding: 10px;
+    height: fit-content;
+    width: 75%;
+}
+
+.card-actions {
+    margin-bottom: 100px;
+}
+
+#load-more {
+    background: transparent;
+    border: none;
+    font-size: 20px;
+}
+
+#load-more:hover {
+    font-size: 22px;
+    box-shadow: 1px 2px 2px 2px black;
+}
+
+li span {
+    display: block;
+    color: black;
+    padding: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+li a {
+    display: block;
+    color: black;
+    padding: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.col-12 a {
+    text-decoration: none; 
+    color: black;
+}
+
+.menuList, .allFilters{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    margin-bottom: 50px;
+}
+
+.allFilters li:hover {
+    background-color: lightgray;
+    text-align: right;
+}
+
+.menuList li:hover{
+    background-color: lightgray;
+}
+
+
+.sectionTitle {
+    padding: 5px;
+}
+
+.checkbox-span-text {
+    margin-left: 10;
+}
+
+.li-inputBox {
+    margin-left: 5px;
+    width: 15px;
+    cursor: pointer;
+}
+
+.card {
+    cursor: pointer;
+}
+
+.card:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.active {
+    color: green;
+    background-color: lightskyblue;
+}
+
+.filtersBtn {
+    display: none;
+    background-color: transparent;
+    border: 1px solid black;
+    font-weight: 400;
+    width: auto;
+}
+
+@media screen and (max-width: 1000px) {
+    #leftColumn {
+        display: none;
+        width: 100%;
+        height: fit-content;
+        text-align: left;
+    }
+    
+    #rightColumn {
+        width: 100%;
+    }
+
+    section {
+        margin: 10px;
+    }
+
+    .filtersBtn {
+        display: block;
+    }
+  }
+
+/* sizes grid table */
+.sizes-grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 20px;
+    padding: 10px;
+    margin: -10px;
+    margin-bottom: 50px;
+}
+
+.sizes-grid-container > div {
+    border: solid black;
+    border-width: thin;
+    width: 40px;
+    text-align: center;
+    padding: 5px 0;
+}
+
+.sizes-grid-container > div:hover {
+    cursor: pointer;
+    background-color: lightblue;
+}
+
+.sizes-grid-container > div:active {
+    background-color: green;
+    color: white;
+}
+
+
+
+/* Path alias */
+.path-alias {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+  .path-alias li {
+    float: left;
+    font-size: x-small;
+  }
+  
+  .path-alias li a {
+    display: block;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+  }
+  
+  .path-alias li a:hover {
+    opacity: 0.6;
+  }
+
+  /* filters */
+  .filters {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .filters li {
+    float: left;
+    font-size: large;
+    margin-right: 25px;
+  }
+
+  @media screen and (max-width: 1000px) {
+    .filters li {
+        margin-top: 10px;
+        margin-right: 10px;
+    }
+  }
