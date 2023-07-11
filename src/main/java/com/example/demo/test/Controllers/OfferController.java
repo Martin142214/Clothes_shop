@@ -102,9 +102,9 @@ public class OfferController {
         //_carService.setLanguage(request, model);
         model.addAttribute("isBgLang", _shoeService.isLanguageBulgarian());
 
-        _clothesService.removeAllFilters();
+        //_clothesService.removeAllFilters();
 
-        return "User_pages/sneakers_list.html";
+        return "user_pages/sneakers_list.html";
     }
 
 

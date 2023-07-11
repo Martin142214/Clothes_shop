@@ -113,7 +113,7 @@ public class ShoesController {
 
         _shoeService.removeAllFilters();
         
-        return "user_pages/product_page.html";
+        return "user_pages/product_pages/shoes/product_page.html";
     }
 
     @GetMapping("/checkout")
