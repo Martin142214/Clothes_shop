@@ -40,6 +40,13 @@ public class Clothes implements Serializable {
         this.price = price;
         this.images = images;
     }
+
+    public Clothes(ClothesBrands brand, String model, Integer price) {
+        this.brand = brand;
+        this.model = model;
+        this.price = price;
+    }
+
     public Clothes() { }
 
 }

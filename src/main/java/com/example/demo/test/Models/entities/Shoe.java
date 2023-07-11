@@ -31,7 +31,7 @@ public class Shoe implements Serializable {
     public String mainImageUrl;
     public List<FileDB> sliderImages;
 
-     public Shoe(Brands brand, String model, String description, String releaseDate, List<Sizes> sizes, Integer rating,
+    public Shoe(Brands brand, String model, String description, String releaseDate, List<Sizes> sizes, Integer rating,
             Conditions condition, Colors color, String colorSpecificatiion, Integer price, boolean isAuctionOffer, String mainImageUrl, List<FileDB> sliderImages) {
         this.brand = brand;
         this.model = model;
@@ -47,6 +47,14 @@ public class Shoe implements Serializable {
         this.mainImageUrl = mainImageUrl;
         this.sliderImages = sliderImages;
     }
+
+    public Shoe(Brands brand, String model, Integer price) {
+        this.brand = brand;
+        this.model = model;
+        this.price = price;
+    }
+
+
     public Shoe() { }
 
 }
