@@ -1,4 +1,4 @@
-package com.example.demo.test.Controllers;
+package com.example.demo.test.controllers;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -18,16 +18,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.example.demo.test.Models.classModels.FileDB;
-import com.example.demo.test.Models.enums.Brands;
-import com.example.demo.test.Models.enums.ClothesBrands;
-import com.example.demo.test.Repositories.ClothesRepository;
-import com.example.demo.test.Repositories.ShoeRepository;
-import com.example.demo.test.Repositories.authRepositories.UserRepository;
-import com.example.demo.test.Services.CartService;
-import com.example.demo.test.Services.ClothesService;
-import com.example.demo.test.Services.ShoeService;
-import com.example.demo.test.Services.UserService;
+import com.example.demo.test.services.CartService;
+import com.example.demo.test.services.ShoeService;
+
+import com.example.demo.test.services.UserService;
+import com.example.demo.test.models.classModels.FileDB;
+import com.example.demo.test.models.enums.Brands;
+import com.example.demo.test.models.enums.ClothesBrands;
+import com.example.demo.test.repositories.ClothesRepository;
+import com.example.demo.test.repositories.ShoeRepository;
+
+import com.example.demo.test.repositories.authRepositories.UserRepository;
+
 
 @Controller
 @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -44,9 +46,6 @@ public class AdminController {
 
     @Autowired
     private CartService _cartService;
-
-    @Autowired
-    private ClothesService _clothesService;
 
     @Autowired
     private ShoeRepository _shoeRepository;

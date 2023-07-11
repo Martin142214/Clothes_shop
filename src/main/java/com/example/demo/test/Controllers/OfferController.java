@@ -1,4 +1,4 @@
-package com.example.demo.test.Controllers;
+package com.example.demo.test.controllers;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -15,17 +15,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.example.demo.test.Models.enums.Conditions;
-import com.example.demo.test.Services.ClothesService;
-import com.example.demo.test.Services.FilesService;
-import com.example.demo.test.Services.ShoeService;
-import com.example.demo.test.Services.UserService;
-import com.example.demo.test.Models.classModels.FileDB;
-import com.example.demo.test.Models.classModels.Filter;
-import com.example.demo.test.Models.classModels.Sizes;
-import com.example.demo.test.Models.entities.Shoe;
-import com.example.demo.test.Models.enums.Brands;
-import com.example.demo.test.Models.enums.Colors;
+import com.example.demo.test.services.ClothesService;
+import com.example.demo.test.services.FilesService;
+import com.example.demo.test.services.ShoeService;
+import com.example.demo.test.services.UserService;
+import com.example.demo.test.models.classModels.FileDB;
+import com.example.demo.test.models.classModels.Filter;
+import com.example.demo.test.models.classModels.Sizes;
+import com.example.demo.test.models.entities.Shoe;
+import com.example.demo.test.models.enums.Brands;
+import com.example.demo.test.models.enums.Colors;
+import com.example.demo.test.models.enums.Conditions;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.example.demo.test.Controllers;
+package com.example.demo.test.controllers;
 
 import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
@@ -6,13 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.example.demo.test.Services.ClothesService;
-import com.example.demo.test.Services.ShoeService;
-import com.example.demo.test.Services.UserService;
+import com.example.demo.test.services.ClothesService;
+import com.example.demo.test.services.ShoeService;
+import com.example.demo.test.services.UserService;
 
 @Controller
 public class MainController {

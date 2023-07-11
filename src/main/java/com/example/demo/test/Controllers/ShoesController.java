@@ -1,4 +1,4 @@
-package com.example.demo.test.Controllers;
+package com.example.demo.test.controllers;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,22 +17,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.example.demo.test.Models.cartModels.CartClothesModel;
-import com.example.demo.test.Models.cartModels.CartShoeModel;
-import com.example.demo.test.Models.cartModels.cart_items.ClothesItem;
-import com.example.demo.test.Models.cartModels.cart_items.ShoeItem;
-import com.example.demo.test.Models.entities.Clothes;
-import com.example.demo.test.Models.entities.Favorite;
-import com.example.demo.test.Models.entities.Shoe;
-import com.example.demo.test.Models.entities.User;
-import com.example.demo.test.Repositories.CartRepository;
-import com.example.demo.test.Repositories.ClothesRepository;
-import com.example.demo.test.Repositories.ShoeRepository;
-import com.example.demo.test.Repositories.authRepositories.UserRepository;
-import com.example.demo.test.Services.CartService;
-import com.example.demo.test.Services.ClothesService;
-import com.example.demo.test.Services.ShoeService;
-import com.example.demo.test.Services.UserService;
+import com.example.demo.test.models.cartModels.CartClothesModel;
+import com.example.demo.test.models.cartModels.CartShoeModel;
+import com.example.demo.test.models.cartModels.cart_items.ClothesItem;
+import com.example.demo.test.models.cartModels.cart_items.ShoeItem;
+import com.example.demo.test.models.entities.Clothes;
+import com.example.demo.test.models.entities.Favorite;
+import com.example.demo.test.models.entities.Shoe;
+import com.example.demo.test.models.entities.User;
+import com.example.demo.test.repositories.CartRepository;
+import com.example.demo.test.repositories.ClothesRepository;
+import com.example.demo.test.repositories.ShoeRepository;
+import com.example.demo.test.repositories.authRepositories.UserRepository;
+import com.example.demo.test.services.CartService;
+import com.example.demo.test.services.ClothesService;
+import com.example.demo.test.services.ShoeService;
+import com.example.demo.test.services.UserService;
+
 
 @Controller
 @RequestMapping(value = {"{lang}/shoes", "/shoes"})
