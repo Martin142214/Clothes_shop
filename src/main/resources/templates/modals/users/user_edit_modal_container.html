@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="UTF-8" http-equiv="Content-Type" content="text/html;"/>
+    <title>Edit modal</title>
+    <link rel="stylesheet" th:href="@{/modal-container.css}">
+</head>
+<body>
+<div id="id04" class="modal">
+
+  <!-- Modal Content -->
+  <!-- The action method is set dynamically by the javascript in the players-list.html file -->
+  <form class="modal-content animate" id="modalUserEditForm" method="post">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id04').style.display='none'" class="close" title="Close Modal">&times;</span>
+    </div>
+
+    <div class="container">
+      <label><b>Username</b></label>
+      <input type="text" class="form-control" placeholder="Username.." name="username" id="username" required>
+
+      <label><b>Email</b></label>
+      <input type="text" class="form-control" placeholder="Email.." name="email" id="email" required disabled>
+
+      <button type="submit" class="btn btn-primary">Update</button>
+      <!-- <label>
+        <input type="checkbox" checked="checked" name="remember"> Remember me
+      </label> -->
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id04').style.display='none'" class="cancelbtn">Cancel</button>
+    </div>
+  </form>
+</div>
+</body>
+</html>
