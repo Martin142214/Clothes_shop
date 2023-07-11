@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" th:href="@{/navbar.css}">
-    <link rel="stylesheet" th:href="@{/offers_list.css}">
-    <link rel="stylesheet" th:href="@{/footer.css}">
+    <link rel="stylesheet" th:href="@{/css/navbar.css}">
+    <link rel="stylesheet" th:href="@{/css/offers_list.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
     <script src="/scripts/open_sideNavigation.js"></script>
     <script src="/scripts/offers_list.js"></script>
     <script src="/scripts/load_more_cards.js"></script>
@@ -84,7 +84,7 @@
             <div>
                 <h3 class="sectionTitle" th:text="${isBgLang} ? 'Цветове' : 'Colors'"></h3>
                 <ul class="allFilters">
-                    <li th:each="colorOpt : ${T(com.example.demoTEST2.models.enums.Colors).values()}" 
+                    <li th:each="colorOpt : ${T(com.example.demo.test.models.enums.Colors).values()}" 
                         th:classappend="${colorFilter eq #strings.toLowerCase(colorOpt)}?active" 
                         th:attr="style=${colorFilter eq #strings.toLowerCase(colorOpt) ? 'pointer-events:none; opacity: 0.6' : ''}">
                         <div class="justify-content-left">
@@ -299,7 +299,7 @@
       </div>
       
     </section>
-    <div th:replace="/footer.html :: footer"></div>
+    <div th:replace="/footer/footer.html :: footer"></div>
     
 <script th:inline="javascript">
     var offers = [[${offers}]];

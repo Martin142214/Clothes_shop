@@ -5,7 +5,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" th:href="@{/css/navbar.css}">
-    <link rel="stylesheet" th:href="@{/imageSlider.css}">
+    <link rel="stylesheet" th:href="@{/css/imageSlider.css}">
     <link rel="stylesheet" th:href="@{/css/shoes_list.css}">
     <link rel="stylesheet" th:href="@{/css/footer.css}">
     <script src="/scripts/search_shoes.js"></script>
@@ -16,10 +16,10 @@
 </head>
 <body onload="setLanguage(); alignCards()">
 <div th:if="${not isBgLang}">
-    <header th:replace="/Navbar/navigation_bar.html :: body"></header>
+    <header th:replace="/navbar/navigation_bar.html :: body"></header>
 </div>
 <div th:if="${isBgLang}">
-    <header th:replace="/Navbar/navigation_bar_bg.html :: body"></header>
+    <header th:replace="/navbar/navigation_bar_bg.html :: body"></header>
 </div>
 <section>
 <div class="slideshow-container">
@@ -80,7 +80,7 @@
 </div>
 </section>
 
-<div th:replace="/footer.html :: footer"></div>
+<div th:replace="/footer/footer.html :: footer"></div>
 
 <script src="/scripts/imageSlider.js"></script>
 </body>
