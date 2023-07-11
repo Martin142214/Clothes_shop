@@ -13,6 +13,7 @@ import com.example.demo.test.models.classModels.Filter;
 import com.example.demo.test.models.classModels.Sizes;
 import com.example.demo.test.models.classModels.SliderClothes;
 import com.example.demo.test.models.entities.Clothes;
+import com.example.demo.test.models.enums.ClothesBrands;
 import com.example.demo.test.repositories.ClothesRepository;
 
 @Service
@@ -204,17 +205,31 @@ public class ClothesService {
         var clothes = this.getAll();
         Collection<SliderClothes> sliderClothes = new ArrayList<>();
 
-        if (clothes.size() >= 9) {
+        if (clothes.isEmpty() || clothes.size() < 9) { 
             SliderClothes slideClothes = new SliderClothes();
             for (int i = 1; i < 10; i++) {
-    
-                slideClothes.clothesParts.add(clothes.get(i-1));
+        
+                slideClothes.clothesParts.add(new Clothes(ClothesBrands.randomBrand(), "model:" + i, 100));
     
                 if (i % 3 == 0) {
                     sliderClothes.add(slideClothes);
                     slideClothes = new SliderClothes();
                 }
             }  
+        }
+        else {
+            if (clothes.size() >= 9) {
+                SliderClothes slideClothes = new SliderClothes();
+                for (int i = 1; i < 10; i++) {
+        
+                    slideClothes.clothesParts.add(clothes.get(i-1));
+        
+                    if (i % 3 == 0) {
+                        sliderClothes.add(slideClothes);
+                        slideClothes = new SliderClothes();
+                    }
+                }  
+            }
         }
         return sliderClothes;
     } 

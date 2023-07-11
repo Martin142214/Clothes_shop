@@ -25,6 +25,7 @@ import com.example.demo.test.models.entities.Comment;
 import com.example.demo.test.models.entities.Favorite;
 import com.example.demo.test.models.entities.Shoe;
 import com.example.demo.test.models.entities.User;
+import com.example.demo.test.models.enums.Brands;
 import com.example.demo.test.repositories.CommentRepository;
 import com.example.demo.test.repositories.FavoritesRepository;
 import com.example.demo.test.repositories.ShoeRepository;
@@ -536,17 +537,30 @@ public class ShoeService {
         var shoes = this.getAll().stream().filter(shoe -> shoe.isAuctionOffer != true).toList();
         Collection<SliderShoes> sliderShoes = new ArrayList<>();
 
-        if (shoes.size() >= 9) {
+        if (shoes.isEmpty() || shoes.size() < 9) {
             SliderShoes slideShoes = new SliderShoes();
             for (int i = 1; i < 10; i++) {
-    
-                slideShoes.shoesParts.add(shoes.get(i-1));
-    
+                slideShoes.shoesParts.add(new Shoe(Brands.randomBrand(), "model:" + i, 100));
+        
                 if (i % 3 == 0) {
                     sliderShoes.add(slideShoes);
                     slideShoes = new SliderShoes();
                 }
             }  
+        }
+        else {
+            if (shoes.size() >= 9) {
+                SliderShoes slideShoes = new SliderShoes();
+                for (int i = 1; i < 10; i++) {
+        
+                    slideShoes.shoesParts.add(shoes.get(i-1));
+        
+                    if (i % 3 == 0) {
+                        sliderShoes.add(slideShoes);
+                        slideShoes = new SliderShoes();
+                    }
+                }  
+            }
         }
         return sliderShoes;
     } 
