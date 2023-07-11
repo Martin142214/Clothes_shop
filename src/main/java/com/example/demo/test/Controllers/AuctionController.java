@@ -73,7 +73,7 @@ public class AuctionController {
         _clothesService.removeAllFilters();
         _shoeService.removeAllFilters();
 
-        return "auction_page.html";
+        return "auction/auction_page.html";
     }
 
     @GetMapping("/{id}")
@@ -91,7 +91,7 @@ public class AuctionController {
         } catch (Exception e) {
             return "error.html";
         }
-        return "auction_product_page.html";
+        return "auction/product_pages/auction_product_page.html";
     }
 
     @PostMapping("/{shoeId}/comment")
