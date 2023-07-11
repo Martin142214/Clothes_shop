@@ -1,0 +1,61 @@
+section {
+    margin: 0 200px;
+    top: 50;
+    position: relative;
+}
+
+#leftColumn {
+    float: left;
+    padding: 10px;
+    height: fit-content;
+    width: 50%;
+}
+
+#rightColumn {
+    padding: 10px;
+    height: fit-content;
+    width: 50%;
+}
+
+.card-header img {
+    width: 100%;
+    max-width: fit-content;
+}
+
+#formBtnForProductPage {
+    height: 50px; 
+    width: -webkit-fill-available; 
+    margin: 10px;
+}
+
+#addToFavoritesBtn:hover {
+    color: white;
+    background-color: black;
+}
+
+.not-allowed {
+    cursor: not-allowed;
+}
+
+@-moz-document url-prefix() {
+    #formBtnForProductPage {
+        width: -moz-available;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    section {
+        margin: 10px;
+    }
+}
+
+  @media screen and (max-width: 600px) {
+    #leftColumn {
+        width: 100%;
+        height: fit-content;
+    }
+    
+    #rightColumn {
+        width: 100%;
+    }
+  }
