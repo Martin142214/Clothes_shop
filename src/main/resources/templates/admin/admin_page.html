@@ -57,7 +57,7 @@
             <span  style="cursor: pointer; float: right; padding: 10px" 
                             th:onclick="openUserEditModal([[${adminUser.id}]], [[${adminUser.username}]], 
                                                     [[${adminUser.email}]])" th:text="${isBgLang} ? 'Редактирай' : 'Edit profile'">Edit profile</span>
-            <div th:replace="/user_edit_modal_container.html"></div>
+            <div th:replace="/modals/users/user_edit_modal_container.html"></div>
             <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i>Admin</p>
             <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>Veliko Tarnovo, Bulgaria</p>
             <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i><b th:text="${adminUser.email}"></b></p>
@@ -140,7 +140,7 @@
             <div style="display: flex;">
                 <h5 class="w3-opacity">Username: <b th:text="${user.username}"></b></h5>
                 <span style="margin-left: 20px; cursor: pointer;" th:onclick="openUserDeleteModal([[${user.id}]], [[${user.username}]])">&times;</span>
-                <div th:replace="/user_delete_modal_container.html"></div>
+                <div th:replace="/modals/users/user_delete_modal_container.html"></div>
             </div>
             <h6 class="w3-text-teal">
                 <i class="fa fa-calendar fa-fw w3-margin-right"></i>
@@ -177,10 +177,10 @@
         <div id="createBtnsDiv" class="justify-content mt-2">
             <div style="margin-left: 10px; margin-right: auto;">
                 <button class="btn btn-primary" id="addShoesBtn" onclick="document.getElementById('id06').style.display='block'; showOneImageInput()"><span th:text="${isBgLang} ? 'Добави обувки' : 'Add shoes'"></span></button>
-                <div th:replace="/create_shoe_modal_container.html :: body"></div>
+                <div th:replace="/modals/shoes/create_shoe_modal_container.html :: body"></div>
 
                 <button class="btn btn-primary" id="addClothesBtn" onclick="document.getElementById('id07').style.display='block';"><span th:text="${isBgLang} ? 'Добави дрехи' : 'Add clothes'"></span></button>
-                <div th:replace="/clothes-templates/create_clothes_modal_container.html :: body"></div>
+                <div th:replace="/modals/clothes/create_clothes_modal_container.html :: body"></div>
                 <!--<div class="d-flex justify-content mt-2">               
                     <h5 th:text="${language == 'english'} ? 'Recommended for you' : 'Препоръчани за теб'"></h5>
                     <img th:src="|/images/question-mark-circle.png|" alt="question icon" style="width: 20px; height: 20px; top: 2; left: 10; position: relative;">
@@ -221,13 +221,13 @@
                               th:onclick="openShoeEditModal([[${shoe.id}]], [[${shoe.brand}]], 
                                                       [[${shoe.model}]], [[${shoe.price}]], 
                                                       [[${shoe.releaseDate}]], [[${shoe.mainImageUrl}]])" th:text="${isBgLang} ? 'Редактирай' : 'Edit'"></button>
-                      <div th:replace="/edit_shoe_modal_container.html"></div>
+                      <div th:replace="/modals/shoes/edit_shoe_modal_container.html"></div>
                       </div>
                       <div>
                           <button class="btn btn-sm btn-outline-danger" style="width: 100%;" th:onclick="openShoeDeleteModal([[${shoe.id}]], [[${shoe.brand}]], 
                                                                                                                            [[${shoe.model}]], [[${shoe.releaseDate}]], 
                                                                                                                            [[${shoe.colorSpecification}]], [[${shoe.mainImageUrl}]])" th:text="${isBgLang} ? 'Изтрий' : 'Delete'">Delete</button>
-                          <div th:replace="/delete_shoe_modal_container.html"></div>
+                          <div th:replace="/modals/shoes/delete_shoe_modal_container.html"></div>
                       </div>
                   </div>
               </div>
@@ -257,14 +257,14 @@
                         th:onclick="openClothesEditModal([[${cloth.id}]], [[${cloth.brand}]], 
                                                 [[${cloth.model}]], [[${cloth.price}]], 
                                                 [[${cloth.releaseDate}]], [[${cloth.images}]])" th:text="${isBgLang} ? 'Редактирай' : 'Edit'"></button>
-                    <div th:replace="/clothes-templates/edit_cloth_modal_container.html"></div>
+                    <div th:replace="/modals/clothes/edit_cloth_modal_container.html"></div>
                 </div>
                 <div>
                     <button class="btn btn-sm btn-outline-danger" style="width: 100%;" th:onclick="openClothesDeleteModal([[${cloth.id}]], [[${cloth.brand}]], 
                                                                                                                      [[${cloth.model}]], [[${cloth.releaseDate}]], 
                                                                                                                      [[${cloth.colorSpecification}]], 
                                                                                                                      [[${cloth.images}]])" th:text="${isBgLang} ? 'Изтрий' : 'Delete'"></button>
-                    <div th:replace="/clothes-templates/delete_clothes_modal_container.html"></div>
+                    <div th:replace="/modals/clothes/delete_clothes_modal_container.html"></div>
                 </div>
             </div>
         </div>
