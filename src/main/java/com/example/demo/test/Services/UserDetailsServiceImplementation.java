@@ -1,4 +1,4 @@
-package com.example.demo.test.Services;
+package com.example.demo.test.services;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -7,11 +7,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.test.Models.entities.Privilege;
-import com.example.demo.test.Models.entities.Role;
-import com.example.demo.test.Models.entities.User;
-import com.example.demo.test.Repositories.authRepositories.RoleRepository;
-import com.example.demo.test.Repositories.authRepositories.UserRepository;
+import com.example.demo.test.models.entities.Privilege;
+import com.example.demo.test.models.entities.Role;
+import com.example.demo.test.models.entities.User;
+import com.example.demo.test.repositories.authRepositories.RoleRepository;
+import com.example.demo.test.repositories.authRepositories.UserRepository;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package com.example.demo.test.Services;
+package com.example.demo.test.services;
 
 import java.io.IOException;
 import java.nio.file.FileSystems;

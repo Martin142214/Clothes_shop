@@ -1,4 +1,4 @@
-package com.example.demo.test.Services;
+package com.example.demo.test.services;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -9,11 +9,11 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.test.Models.classModels.Filter;
-import com.example.demo.test.Models.classModels.Sizes;
-import com.example.demo.test.Models.classModels.SliderClothes;
-import com.example.demo.test.Models.entities.Clothes;
-import com.example.demo.test.Repositories.ClothesRepository;
+import com.example.demo.test.models.classModels.Filter;
+import com.example.demo.test.models.classModels.Sizes;
+import com.example.demo.test.models.classModels.SliderClothes;
+import com.example.demo.test.models.entities.Clothes;
+import com.example.demo.test.repositories.ClothesRepository;
 
 @Service
 public class ClothesService {

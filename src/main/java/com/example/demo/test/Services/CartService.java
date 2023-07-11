@@ -1,4 +1,4 @@
-package com.example.demo.test.Services;
+package com.example.demo.test.services;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -10,18 +10,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import com.example.demo.test.Models.cartModels.CartClothesModel;
-import com.example.demo.test.Models.cartModels.CartShoeModel;
-import com.example.demo.test.Models.cartModels.cart_items.ClothesItem;
-import com.example.demo.test.Models.cartModels.cart_items.ShoeItem;
-import com.example.demo.test.Models.classModels.Order;
-import com.example.demo.test.Models.entities.CartProduct;
-import com.example.demo.test.Models.entities.Clothes;
-import com.example.demo.test.Models.entities.DailyTurnOver;
-import com.example.demo.test.Models.entities.Shoe;
-import com.example.demo.test.Models.entities.User;
-import com.example.demo.test.Repositories.CartRepository;
-import com.example.demo.test.Repositories.TurnOverRepository;
+import com.example.demo.test.models.cartModels.CartClothesModel;
+import com.example.demo.test.models.cartModels.CartShoeModel;
+import com.example.demo.test.models.cartModels.cart_items.ClothesItem;
+import com.example.demo.test.models.cartModels.cart_items.ShoeItem;
+import com.example.demo.test.models.classModels.Order;
+import com.example.demo.test.models.entities.CartProduct;
+import com.example.demo.test.models.entities.Clothes;
+import com.example.demo.test.models.entities.DailyTurnOver;
+import com.example.demo.test.models.entities.Shoe;
+import com.example.demo.test.models.entities.User;
+import com.example.demo.test.repositories.CartRepository;
+import com.example.demo.test.repositories.TurnOverRepository;
 
 @Service
 public class CartService {

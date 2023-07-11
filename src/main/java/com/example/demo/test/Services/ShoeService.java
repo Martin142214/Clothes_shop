@@ -1,4 +1,4 @@
-package com.example.demo.test.Services;
+package com.example.demo.test.services;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,18 +17,18 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.example.demo.test.FileUploadUtils;
-import com.example.demo.test.Models.classModels.Filter;
-import com.example.demo.test.Models.classModels.Sizes;
-import com.example.demo.test.Models.classModels.SliderShoes;
-import com.example.demo.test.Models.entities.Clothes;
-import com.example.demo.test.Models.entities.Comment;
-import com.example.demo.test.Models.entities.Favorite;
-import com.example.demo.test.Models.entities.Shoe;
-import com.example.demo.test.Models.entities.User;
-import com.example.demo.test.Repositories.CommentRepository;
-import com.example.demo.test.Repositories.FavoritesRepository;
-import com.example.demo.test.Repositories.ShoeRepository;
-import com.example.demo.test.Repositories.authRepositories.UserRepository;
+import com.example.demo.test.models.classModels.Filter;
+import com.example.demo.test.models.classModels.Sizes;
+import com.example.demo.test.models.classModels.SliderShoes;
+import com.example.demo.test.models.entities.Clothes;
+import com.example.demo.test.models.entities.Comment;
+import com.example.demo.test.models.entities.Favorite;
+import com.example.demo.test.models.entities.Shoe;
+import com.example.demo.test.models.entities.User;
+import com.example.demo.test.repositories.CommentRepository;
+import com.example.demo.test.repositories.FavoritesRepository;
+import com.example.demo.test.repositories.ShoeRepository;
+import com.example.demo.test.repositories.authRepositories.UserRepository;
 
 @Service
 public class ShoeService {
