@@ -1,4 +1,4 @@
-package com.example.demo.test.Models.enums;
+package com.example.demo.test.models.enums;
 
 public enum Roles {
     Admin,
