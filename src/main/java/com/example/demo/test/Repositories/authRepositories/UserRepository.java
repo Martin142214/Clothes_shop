@@ -1,8 +1,8 @@
-package com.example.demo.test.Repositories.authRepositories;
+package com.example.demo.test.repositories.authRepositories;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import com.example.demo.test.Models.entities.User;
+import com.example.demo.test.models.entities.User;
 
 public interface UserRepository extends MongoRepository<User, String>{
     
