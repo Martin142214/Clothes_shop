@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<head>
+        <title>Delete cloth modal</title>
+        <link rel="stylesheet" th:href="@{/modal-container.css}">
+</head>
+<body>
+<div id="id09" class="modal">
+  <!-- Modal Content -->
+  <form class="modal-content animate" id="modalClothesDeleteForm" method="post">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id09').style.display='none'" class="close" title="Close Modal">&times;</span>
+    </div>
+
+    <div class="container">
+      <h2 style="color:red">Are you sure you want to delete the following product:</h2>
+    </div>
+    <div class="container">
+        <img id="clothImage" src="" style="width: 200px; height: auto;">
+    </div>
+    <div class="container">
+      <h2 id="clothDescription" style="color:black"></h2>
+    </div>
+
+    <button type="submit" class="btn btn-danger">Delete</button>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id09').style.display='none'" class="cancelbtn">Cancel</button>
+    </div>
+  </form>
+</div>
+</body>
+</html>

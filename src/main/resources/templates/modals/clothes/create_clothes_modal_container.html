@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="UTF-8" http-equiv="Content-Type" content="text/html;"/>
+    <title>Create clothes modal</title>
+    <link rel="stylesheet" th:href="@{/modal-container.css}">
+</head>
+<body>
+
+<div id="id07" class="modal">
+
+  <!-- Modal Content -->
+  <form class="modal-content animate" th:action="@{/clothes/create}" method="post" enctype="multipart/form-data">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id07').style.display='none'" class="close" title="Close Modal">&times;</span>
+    </div>
+
+    <div class="container">
+        <label><b>Brand</b></label>
+        <select class="form-control" id="brandOptions" name="brand" title="brand">
+          <option id="brand" th:each="brandOpt : ${T(com.example.demoTEST2.models.enums.ClothesBrands).values()}" th:text="${brandOpt}" th:value="${brandOpt}"></option>
+        </select>
+
+      <label><b>Model</b></label>
+      <input type="text" class="form-control" placeholder="Model.." name="model" required>
+
+      <label><b>Description</b></label>
+      <input type="text" class="form-control" placeholder="Description.." name="description" required>
+
+      <label><b>Release Date</b></label>
+      <input type="date" class="form-control" placeholder="Release date.." name="releaseDate" required>
+
+      <label><b>Sizes available</b></label>
+      <br>
+      <input type="checkbox" name="sizes" value="XXS" title="size">
+      <label for="size">Size: XXS</label><br>
+      <input type="checkbox" name="sizes" value="XS" title="size">
+      <label for="size">Size: XS</label><br>
+      <input type="checkbox" name="sizes" value="S" title="size">
+      <label for="size">Size: S</label><br>
+      <input type="checkbox" name="sizes" value="M" title="size">
+      <label for="size">Size: M</label><br>
+      <input type="checkbox" name="sizes" value="L" title="size">
+      <label for="size">Size: L</label><br>
+      <input type="checkbox" name="sizes" value="XL" title="size">
+      <label for="size">Size: XL</label><br>
+      <input type="checkbox" name="sizes" value="XXL" title="size">
+      <label for="size">Size: XXL</label><br>
+
+      <label><b>Color</b></label>
+      <select class="form-control" id="colorOptions" name="color" title="colors">
+        <option id="colorOption" th:each="colorOpt : ${T(com.example.demoTEST2.models.enums.Colors).values()}" th:text="${colorOpt}" th:value="${colorOpt}"></option>
+      </select>
+
+      <label><b>Color Specification</b></label>
+      <input type="text" class="form-control" placeholder="Color specification.." name="colorSpecification" required>
+
+      <label><b>Gender</b></label>
+      <select class="form-control" id="genderOptions" name="gender" title="genders">
+        <option id="genderOption" th:each="genderOpt : ${T(com.example.demoTEST2.models.enums.Genders).values()}" th:text="${genderOpt}" th:value="${genderOpt}"></option>
+      </select>
+
+      <label><b>Price</b></label>
+      <input type="number" class="form-control" placeholder="Price.." name="price" required>
+
+      <label id="manyImagesLabel"><b>Images</b></label>
+      <label id="noteLabel"><b>Note:</b> Please make sure the images are not more than 3!</label>
+      <input type="file" id="file-input" title="files" class="form-control" name="images" accept="image/png, image/jpeg" multiple required>
+      <p id="files-submitted"></p>
+
+
+      <button type="submit" id="file-submit" class="btn btn-primary">Create</button>
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id07').style.display='none'" class="cancelbtn">Cancel</button>
+    </div>
+  </form>
+</div>
+</body>
+</html>
