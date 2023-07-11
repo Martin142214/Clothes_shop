@@ -1,0 +1,256 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" th:href="@{/css/navbar.css}">
+    <link rel="stylesheet" th:href="@{/css/offers_list.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+    <script src="/scripts/open_sideNavigation.js"></script>
+    <script src="/scripts/offers_list.js"></script>
+    <title>Sneakers</title>
+</head>
+<body onload="setLanguage(); setPathAlias(); alignCards()">
+<div th:if="${not isBgLang}">
+    <header th:replace="/navbar/navigation_bar.html :: body"></header>
+</div>
+<div th:if="${isBgLang}">
+    <header th:replace="/navbar/navigation_bar_bg.html :: body"></header>
+</div>
+<section>
+    <div class="row">
+        <button onclick="openFilters()" class="filtersBtn">Show filters</button>
+        <div class="column" id="leftColumn">
+            <div>
+                <h3 class="sectionTitle" th:text="${isBgLang} ? 'Продукти' : 'Products'"></h3>
+                <ul class="menuList">
+                    <li>
+                        <a href="/sneakers">Sneakers</a>
+                    </li>
+                    <li class="active" style="pointer-events: none;">
+                        <a href="/clothes">Clothes</a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="sectionTitle" th:text="${isBgLang} ? 'Марка' : 'Brand'"></h3>
+                <ul class="allFilters">
+                    <li th:each="brand : ${brands}" th:classappend="${brandFilter eq #strings.toLowerCase(brand)}?active" th:attr="style=${brandFilter eq #strings.toLowerCase(brand) ? 'pointer-events:none; opacity: 0.6' : ''}">
+                        <form th:action="@{/clothes/brand}" method="post" style="margin: 0;">
+                            <input type="hidden" name="brand" th:value="${brand}">
+                            
+                            <button type="submit" title="submitBtn" style="border: 0px; background-color: transparent; padding: 0;">
+                                <span id="brandName" th:text="${brand}"></span>
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="sectionTitle" th:text="${isBgLang} ? 'Пол' : 'Gender'"></h3>
+                <ul class="allFilters">
+                    <li th:each="genderOpt : ${T(com.example.demo.test.models.enums.Genders).values()}" 
+                        th:classappend="${genderFilter eq #strings.toLowerCase(genderOpt)}?active" 
+                        th:attr="style=${genderFilter eq #strings.toLowerCase(genderOpt) ? 'pointer-events:none; opacity: 0.6' : ''}">
+                        <div class="justify-content-left">
+                            <form class="d-flex" th:id="${genderOpt}" th:action="@{/clothes/gender}" method="post" style="margin: 0;">
+                                <input type="checkbox" class="li-inputBox" name="gender" th:value="${genderOpt}" th:checked="${genderFilter eq #strings.toLowerCase(genderOpt)}" title="gender" th:onchange="document.getElementById([[${genderOpt}]]).submit()">    
+                                <span class="checkbox-span-text" th:text="${genderOpt}"></span>
+                            </form>
+                        </div>
+                    </li>
+                    <!--
+                        <li>
+                        <div class="justify-content-left">
+                            <form class="d-flex" id="320d" th:action="@{/sneakers/category}" method="post" style="margin: 0;">
+                                <input type="checkbox" class="li-inputBox" name="category" value="320d" title="women" onchange="document.getElementById('320d').submit()">    
+                                <span class="checkbox-span-text">320d</span>
+                            </form>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex justify-content-left">
+                            <form class="d-flex" id="children" th:action="@{/sneakers/category}" method="post" style="margin: 0;">
+                                <input type="checkbox" class="li-inputBox" name="category" value="golf6" title="women" onchange="document.getElementById('children').submit()">    
+                                <span class="checkbox-span-text">Golf 6</span>
+                            </form>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex justify-content-left">
+                            <form class="d-flex" id="preSchool" th:action="@{/sneakers/category}" method="post" style="margin: 0;">
+                                <input type="checkbox" class="li-inputBox" name="category" value="Cclass" title="women" onchange="document.getElementById('preSchool').submit()">    
+                                <span class="checkbox-span-text">C class</span>
+                            </form>
+                        </div>
+                    </li> 
+                -->
+                </ul>
+            </div>
+            <div>
+                <h3 class="sectionTitle" th:text="${isBgLang} ? 'Таблица с размери' : 'Size table'"></h3>
+                <div class="sizes-grid-container">
+                    <div th:classappend="${sizeFilter eq #strings.toLowerCase('XXS')}?active" th:attr="style=${sizeFilter eq #strings.toLowerCase('XXS') ? 'pointer-events:none; opacity: 0.6' : ''}">
+                        <form th:action="@{/clothes/size}" method="post" style="margin: 0;">
+                            <input type="hidden" name="size" value="xxs">
+                            
+                            <button type="submit" th:disabled="${sizeFilter eq #strings.toLowerCase('XXS')}" title="submitBtn" style="border: 0px; background-color: transparent; padding: 0;">
+                                <span id="brandName">XXS</span>
+                            </button>
+                        </form>
+                    </div>
+                    <div th:classappend="${sizeFilter eq #strings.toLowerCase('XS')}?active" th:attr="style=${sizeFilter eq #strings.toLowerCase('XS') ? 'pointer-events:none; opacity: 0.6' : ''}">
+                        <form th:action="@{/clothes/size}" method="post" style="margin: 0;">
+                            <input type="hidden" name="size" value="xs">
+                            
+                            <button type="submit" th:disabled="${sizeFilter eq #strings.toLowerCase('XS')}" title="submitBtn" style="border: 0px; background-color: transparent; padding: 0;">
+                                <span id="brandName">XS</span>
+                            </button>
+                        </form>
+                    </div>
+                    <div th:classappend="${sizeFilter eq #strings.toLowerCase('S')}?active" th:attr="style=${sizeFilter eq #strings.toLowerCase('S') ? 'pointer-events:none; opacity: 0.6' : ''}">
+                        <form th:action="@{/clothes/size}" method="post" style="margin: 0;">
+                            <input type="hidden" name="size" value="s">
+                            
+                            <button type="submit" th:disabled="${sizeFilter eq #strings.toLowerCase('S')}" title="submitBtn" style="border: 0px; background-color: transparent; padding: 0;">
+                                <span id="brandName">S</span>
+                            </button>
+                        </form>
+                    </div>  
+                    <div th:classappend="${sizeFilter eq #strings.toLowerCase('M')}?active" th:attr="style=${sizeFilter eq #strings.toLowerCase('M') ? 'pointer-events:none; opacity: 0.6' : ''}">
+                        <form th:action="@{/clothes/size}" method="post" style="margin: 0;">
+                            <input type="hidden" name="size" value="m">
+                            
+                            <button type="submit" th:disabled="${sizeFilter eq #strings.toLowerCase('M')}" title="submitBtn" style="border: 0px; background-color: transparent; padding: 0;">
+                                <span id="brandName">M</span>
+                            </button>
+                        </form>
+                    </div>
+                    <div th:classappend="${sizeFilter eq #strings.toLowerCase('L')}?active" th:attr="style=${sizeFilter eq #strings.toLowerCase('L') ? 'pointer-events:none; opacity: 0.6' : ''}">
+                        <form th:action="@{/clothes/size}" method="post" style="margin: 0;">
+                            <input type="hidden" name="size" value="l">
+                            
+                            <button type="submit" th:disabled="${sizeFilter eq #strings.toLowerCase('L')}" title="submitBtn" style="border: 0px; background-color: transparent; padding: 0;">
+                                <span id="brandName">L</span>
+                            </button>
+                        </form>
+                    </div>
+                    <div th:classappend="${sizeFilter eq #strings.toLowerCase('XL')}?active" th:attr="style=${sizeFilter eq #strings.toLowerCase('XL') ? 'pointer-events:none; opacity: 0.6' : ''}">
+                        <form th:action="@{/clothes/size}" method="post" style="margin: 0;">
+                            <input type="hidden" name="size" value="xl">
+                            
+                            <button type="submit" th:disabled="${sizeFilter eq #strings.toLowerCase('XL')}" title="submitBtn" style="border: 0px; background-color: transparent; padding: 0;">
+                                <span id="brandName">XL</span>
+                            </button>
+                        </form>
+                    </div>
+                    <div th:classappend="${sizeFilter eq #strings.toLowerCase('XXL')}?active" th:attr="style=${sizeFilter eq #strings.toLowerCase('XXL') ? 'pointer-events:none; opacity: 0.6' : ''}">
+                        <form th:action="@{/clothes/size}" method="post" style="margin: 0;">
+                            <input type="hidden" name="size" value="xxl">
+                            
+                            <button type="submit" th:disabled="${sizeFilter eq #strings.toLowerCase('XXL')}" title="submitBtn" style="border: 0px; background-color: transparent; padding: 0;">
+                                <span id="brandName">XXL</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h3 class="sectionTitle" th:text="${isBgLang} ? 'Цена' : 'Price'"></h3>
+                <ul class="allFilters">
+                    <li th:classappend="${priceFilter eq #strings.toLowerCase('0-50')}?active" th:attr="style=${priceFilter eq #strings.toLowerCase('0-50') ? 'pointer-events:none; opacity: 0.6' : ''}">
+                        <div class="justify-content-left">
+                            <form class="d-flex" id="priceForm" th:action="@{/clothes/price}" method="post" style="margin: 0;">
+                                <input type="checkbox" class="li-inputBox" name="price" value="0-50" th:checked="${priceFilter eq '0-50'}" title="price" onchange="document.getElementById('priceForm').submit()">    
+                            <span class="checkbox-span-text">Under $50</span>
+                            </form>
+                        </div>
+                    </li>
+                    <li th:classappend="${priceFilter eq #strings.toLowerCase('50-100')}?active" th:attr="style=${priceFilter eq #strings.toLowerCase('50-100') ? 'pointer-events:none; opacity: 0.6' : ''}">
+                        <div class="justify-content-left">
+                            <form class="d-flex" id="priceForm1" th:action="@{/clothes/price}" method="post" style="margin: 0;">
+                                <input type="checkbox" class="li-inputBox" name="price" value="50-100" th:checked="${priceFilter eq '50-100'}" title="price" onchange="document.getElementById('priceForm1').submit()">
+                                <span class="checkbox-span-text">$50-$100</span>
+                            </form>
+                        </div>
+                    </li>
+                    <li th:classappend="${priceFilter eq #strings.toLowerCase('100-150')}?active" th:attr="style=${priceFilter eq #strings.toLowerCase('100-150') ? 'pointer-events:none; opacity: 0.6' : ''}">
+                        <div class="d-flex justify-content-left">
+                            <form class="d-flex" id="priceForm2" th:action="@{/clothes/price}" method="post" style="margin: 0;">
+                                <input type="checkbox" class="li-inputBox" name="price" value="100-150" th:checked="${priceFilter eq '100-150'}" title="price" onchange="document.getElementById('priceForm2').submit()">
+                                <span class="checkbox-span-text">$100-$150</span>
+                            </form>
+                        </div>
+                    </li>
+                    <li th:classappend="${priceFilter eq #strings.toLowerCase('150-200')}?active" th:attr="style=${priceFilter eq #strings.toLowerCase('150-200') ? 'pointer-events:none; opacity: 0.6' : ''}">
+                        <div class="d-flex justify-content-left">
+                            <form class="d-flex" id="priceForm3" th:action="@{/clothes/price}" method="post" style="margin: 0;">
+                                <input type="checkbox" class="li-inputBox" name="price" value="150-200" th:checked="${priceFilter eq '150-200'}" title="price" onchange="document.getElementById('priceForm3').submit()">
+                                <span class="checkbox-span-text">$150-$200</span>
+                            </form>
+                        </div>
+                    </li>
+                    <li th:classappend="${priceFilter eq #strings.toLowerCase('200-300')}?active" th:attr="style=${priceFilter eq #strings.toLowerCase('200-300') ? 'pointer-events:none; opacity: 0.6' : ''}">
+                        <div class="d-flex justify-content-left">
+                            <form class="d-flex" id="priceForm4" th:action="@{/clothes/price}" method="post" style="margin: 0;">
+                                <input type="checkbox" class="li-inputBox" name="price" value="200-300" th:checked="${priceFilter eq '200-300'}" title="price" onchange="document.getElementById('priceForm4').submit()">
+                                <span class="checkbox-span-text">$200-$300</span>
+                            </form>
+                        </div>
+                    </li>
+                    <li th:classappend="${priceFilter eq #strings.toLowerCase('300')}?active" th:attr="style=${priceFilter eq #strings.toLowerCase('300') ? 'pointer-events:none; opacity: 0.6' : ''}">
+                        <div class="d-flex justify-content-left">
+                            <form class="d-flex" id="priceForm5" th:action="@{/clothes/price}" method="post" style="margin: 0;">
+                                <input type="checkbox" class="li-inputBox" name="price" value="300" th:checked="${priceFilter eq '300'}" title="price" onchange="document.getElementById('priceForm5').submit()">
+                                <span class="checkbox-span-text">$300+</span>
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+            </div>    
+        </div>
+        <div class="column" id="rightColumn">
+            <ul class="path-alias">
+
+              </ul>
+              <!-- filters list -->
+              <ul class="filters">
+                <li th:each="filter : ${filters}" class="filter">
+                    <div class="d-flex justify-content-left">
+                        <form th:action="@{/clothes/clear}" method="post" style="margin: 0;">  
+                            <input type="hidden" name="filter" th:value="${filter.type}">                 
+                            <button type="submit" title="submitBtn" style="border: 0px; background-color: lightgrey; color: black; padding: 0;">
+                                <span id="brandName" class="d-flex">
+                                    <p th:text="${filter.value}" style="text-transform: capitalize; margin: 0;"></p>
+                                    <p style="padding: 5px 0px 0px 10px; font-weight: 400; font-size: 12px; margin: 0;">x</p></span>
+                            </button>
+                        </form>
+                    </div>
+                </li>
+              </ul>
+              <!-- column 2 title here-->
+            <div class="row">
+                <h4 id="noResults" style="display: none;">No matches found!</h4>
+                <div th:each="cloth : ${offers}" class="col-12 col-md-3 mt-5 mb-4" style="align-items: stretch;">
+                    <a th:href="@{${isBgLang} ? |/bg/clothes/${cloth.id}| : |/clothes/${cloth.id}| }">
+                    <div class="card">
+                        <div class="card-header">
+                            <img th:with="image=${cloth.images[#lists.size(cloth.images) - 1]}" th:src="|/images/${image.imagePath}|" alt="image for cloth" style="float: right">
+                        </div>
+                        <div class="card-body">
+                            <p th:text="${cloth.brand + ' ' + cloth.model}"></p>
+                            <p class="card-text" >ReleaseDate: <b th:text="${cloth.releaseDate}"></b></p>
+                            <p class="card-text">Price: <b th:text="${cloth.price} + '$'"></b></p>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+      </div>
+</section>
+
+<div th:replace="/footer/footer.html :: footer"></div>
+
+<script src="/scripts/sneakers_cards_align.js"></script>

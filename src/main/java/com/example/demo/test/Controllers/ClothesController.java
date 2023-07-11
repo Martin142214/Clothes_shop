@@ -111,7 +111,7 @@ public class ClothesController {
 
         _shoeService.removeAllFilters();
 
-        return "clothes-templates/clothes_list.html";
+        return "user_pages/clothes_list.html";
     }
 
     @GetMapping("/{id}")
