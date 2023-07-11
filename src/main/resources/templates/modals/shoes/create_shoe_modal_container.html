@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="UTF-8" http-equiv="Content-Type" content="text/html;"/>
+    <title>Create modal</title>
+    <link rel="stylesheet" th:href="@{/modal-container.css}">
+</head>
+<body>
+
+<div id="id06" class="modal">
+
+  <!-- Modal Content -->
+  <form class="modal-content animate" th:action="@{/sneakers/create}" th:object="${car}" method="post" enctype="multipart/form-data">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id06').style.display='none'" class="close" title="Close Modal">&times;</span>
+    </div>
+
+    <div class="container">
+        <label><b>Brand</b></label>
+        <select class="form-control" id="brandOptions" name="brand" title="brand">
+          <option id="brand" th:each="brandOpt : ${T(com.example.demoTEST2.models.enums.Brands).values()}" th:text="${brandOpt}" th:value="${brandOpt}"></option>
+        </select>
+
+      <label><b>Model</b></label>
+      <input type="text" class="form-control" placeholder="Model.." name="model" required>
+
+      <label><b>Description</b></label>
+      <input type="text" class="form-control" placeholder="Description.." name="description" required>
+
+      <label><b>Release Date</b></label>
+      <input type="date" class="form-control" placeholder="Release date.." name="releaseDate" required>
+
+      <label><b>Rating</b></label>
+      <select class="form-control" id="ratingOptions" name="rating" title="ratings" required>
+        <option id="ratingOption" value="1">1 star</option>
+        <option id="ratingOption" value="2">2 stars</option>
+        <option id="ratingOption" value="3">3 stars</option>
+        <option id="ratingOption" value="4">4 stars</option>
+        <option id="ratingOption" value="5">5 stars</option>
+      </select>
+
+      <label><b>Sizes available</b></label>
+      <br>
+      <input type="checkbox" name="sizes" value="38" title="size">
+      <label for="size">Size: 38</label><br>
+      <input type="checkbox" name="sizes" value="39" title="size">
+      <label for="size">Size: 39</label><br>
+      <input type="checkbox" name="sizes" value="40" title="size">
+      <label for="size">Size: 40</label><br>
+      <input type="checkbox" name="sizes" value="41" title="size">
+      <label for="size">Size: 41</label><br>
+      <input type="checkbox" name="sizes" value="41.5" title="size">
+      <label for="size">Size: 41.5</label><br>
+      <input type="checkbox" name="sizes" value="42" title="size">
+      <label for="size">Size: 42</label><br>
+      <input type="checkbox" name="sizes" value="42.5" title="size">
+      <label for="size">Size: 42.5</label><br>
+      <input type="checkbox" name="sizes" value="43" title="size">
+      <label for="size">Size: 43</label><br>
+      <input type="checkbox" name="sizes" value="43.5" title="size">
+      <label for="size">Size: 43.5</label><br>
+      <input type="checkbox" name="sizes" value="44" title="size">
+      <label for="size">Size: 44</label><br>
+      <input type="checkbox" name="sizes" value="45" title="size">
+      <label for="size">Size: 45</label><br>
+      <input type="checkbox" name="sizes" value="46" title="size">
+      <label for="size">Size: 46</label><br>
+
+      <label><b>Condition</b></label>
+      <select class="form-control" id="conditionOptions" name="condition" title="conditions">
+        <option id="conditionOption" th:each="conditionOpt : ${T(com.example.demoTEST2.models.enums.Conditions).values()}" th:text="${conditionOpt}" th:value="${conditionOpt}"></option>
+      </select>
+
+      <label><b>Color</b></label>
+      <select class="form-control" id="colorOptions" name="color" title="colors">
+        <option id="colorOption" th:each="colorOpt : ${T(com.example.demoTEST2.models.enums.Colors).values()}" th:text="${colorOpt}" th:value="${colorOpt}"></option>
+      </select>
+
+      <label><b>Color Specification</b></label>
+      <input type="text" class="form-control" placeholder="Color specification.." name="colorSpecification" required>
+
+      <label><b>Price</b></label>
+      <input type="number" class="form-control" placeholder="Price.." name="price" required>
+
+      <label><b>Is this auction offer?</b></label>
+      <br>
+        <input type="radio" id="auctionOption" onclick="showManyImagesInput()" name="isAuctionOffer" value="true" title="auctionOptions">
+        <label for="auctionOpt">Yes</label>
+        <input type="radio" id="auctionOption1" onclick="showOneImageInput()" name="isAuctionOffer" value="false" title="auctionOptions">
+        <label for="auctionOpt">No</label><br>
+
+      <label id="oneImageLabel"><b>Main image</b></label>
+      <input type="file" id="oneImageInput" title="file" class="form-control" name="mainImage" accept="image/png, image/jpeg" required>
+
+      <label id="manyImagesLabel"><b>Images for 360 slider</b></label>
+      <label id="noteLabel"><b>Note:</b> Please make sure the images are in the correct naming convention order for correct slider visualization:<pre>&lt;image number&gt;.&lt;extension&gt;</pre></label>
+      <input type="file" id="manyImagesInput" title="files" class="form-control" name="images" accept="image/png, image/jpeg" multiple>
+
+
+      <button type="submit" class="btn btn-primary">Create</button>
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id06').style.display='none'" class="cancelbtn">Cancel</button>
+    </div>
+  </form>
+</div>
+</body>
+</html>
