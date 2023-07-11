@@ -35,8 +35,8 @@
       <link rel="stylesheet" href="/css-for-main-page/owl.carousel.min.css">
       <link rel="stylesoeet" href="/css-for-main-page/owl.theme.default.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
-      <link rel="stylesheet" th:href="@{/navbar.css}">
-      <link rel="stylesheet" th:href="@{/fade_in_animation.css}">
+      <link rel="stylesheet" th:href="@{/css/navbar.css}">
+      <link rel="stylesheet" th:href="@{/css/fade_in_animation.css}">
    </head>
    <body onload="addFadeIn('.carousel'); setLanguage()" onscroll="addFadeIn('.carousel')">
       <div th:if="${isSignedIn}">
@@ -187,7 +187,7 @@
       </div>
       <!-- banner bg main end -->
       <!-- fashion section start -->
-      <div class="fashion_section">
+      <div class="fashion_section" th:if="${enoughItems}">
          <div id="main_slider" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                <div class="carousel-item active">
@@ -332,7 +332,7 @@
       </div>
       <!-- fashion section end -->
       <!-- electronic section start -->
-      <div class="fashion_section">
+      <div class="fashion_section" th:if="${enoughItems}">
          <div id="electronic_main_slider" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                <div class="carousel-item active">

@@ -42,8 +42,13 @@ public class MainController {
             isCurrentUserAuthenticated = false;
         }
 
-        model.addAttribute("sliderShoes", _shoeService.divideShoesByParts());
-        model.addAttribute("sliderClothes", _clothesService.divideClothesByParts());
+        if (_shoeService.getAll().size() < 9 && _clothesService.getAll().size() < 9) {
+            model.addAttribute("enoughItems", false);
+        }
+        else {
+            model.addAttribute("sliderShoes", _shoeService.divideShoesByParts());
+            model.addAttribute("sliderClothes", _clothesService.divideClothesByParts());
+        }
         //model.addAttribute("clothes", _clothesService.getAll().stream().limit(3).toList());
         //model.addAttribute("shoes", _shoeService.getAll().stream().filter(shoe -> shoe.isAuctionOffer != true).limit(3).toList());
         model.addAttribute("isSignedIn", isCurrentUserAuthenticated);
