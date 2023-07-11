@@ -1,4 +1,4 @@
-package com.example.demo.test.Models.entities;
+package com.example.demo.test.models.entities;
 
 
 import java.util.ArrayList;
@@ -6,8 +6,8 @@ import java.util.Collection;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.example.demo.test.Models.cartModels.cart_items.ClothesItem;
-import com.example.demo.test.Models.cartModels.cart_items.ShoeItem;
+import com.example.demo.test.models.cartModels.cart_items.ClothesItem;
+import com.example.demo.test.models.cartModels.cart_items.ShoeItem;
 
 
 @Document("Cart_Products")

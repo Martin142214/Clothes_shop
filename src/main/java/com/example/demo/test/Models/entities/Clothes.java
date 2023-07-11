@@ -1,14 +1,15 @@
-package com.example.demo.test.Models.entities;
+package com.example.demo.test.models.entities;
 
-import com.example.demo.test.Models.classModels.FileDB;
-import com.example.demo.test.Models.classModels.Sizes;
-import com.example.demo.test.Models.enums.ClothesBrands;
-import com.example.demo.test.Models.enums.Colors;
 import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.example.demo.test.models.classModels.FileDB;
+import com.example.demo.test.models.classModels.Sizes;
+import com.example.demo.test.models.enums.ClothesBrands;
+import com.example.demo.test.models.enums.Colors;
 
 @Document("Clothes")
 public class Clothes implements Serializable {

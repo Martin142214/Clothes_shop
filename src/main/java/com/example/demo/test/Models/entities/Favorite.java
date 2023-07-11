@@ -1,4 +1,4 @@
-package com.example.demo.test.Models.entities;
+package com.example.demo.test.models.entities;
 
 import java.util.Collection;
 
