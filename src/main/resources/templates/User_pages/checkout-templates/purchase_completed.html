@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,900' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://use.typekit.net/hoy3lrg.js"></script>
+<script>try{Typekit.load({ async: true });}catch(e){}</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css'>
+<link rel="stylesheet" th:href="@{/checkout-template/checkout.css}">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div id="wrapper">
+	<div id="container">
+    <div id="left-col">
+			<div id="left-col-cont">
+				<h2 style="color: black">Cart summary:</h2>
+				<div class="item" th:each="shoe : ${shoesItems}">
+					<div class="img-col">
+						<img th:src="@{|/images/${shoe.product.mainImageUrl}|}" alt="" />
+					</div>
+					<div class="meta-col">
+						<h3 th:text="${shoe.product.brand + ' ' + shoe.product.model}"></h3>
+						<p class="price">$<span th:text="${shoe.product.price}"></span></p>
+						<p class="price">Size EU: <span th:text="${shoe.product.size}"></span></p>
+						<p class="quantity">Quantity: <span th:text="${shoe.quantity}"></span></p>
+					</div>
+				</div>
+				<div class="item" th:each="cloth : ${clothesItems}">
+					<div class="img-col">
+						<img th:src="|/images/${cloth.product.imagePath}|" alt="" />
+					</div>
+					<div class="meta-col">
+						<h3 th:text="${cloth.product.brand + ' ' + cloth.product.model}"></h3>
+						<p class="price">$<span th:text="${cloth.product.price}"></span></p>
+						<p class="price">Size EU: <span th:text="${cloth.product.size}"></span></p>
+						<p class="quantity">Quantity: <span th:text="${cloth.quantity}"></span></p>
+					</div>
+				</div>
+			</div>
+		</div>
+    <div id="right-col">
+	<h2>Purchase completed</h2>
+      <div id="totalDiv">
+		<p id="total" style="color: black;">Name: <span th:text="${buyerData.buyerFName + ' ' + buyerData.buyerLName}"></span></p>
+		<p id="total" style="color: black;">Paid with MasterCard, Expiry date on: <span th:text="${buyerData.cardMonth + '/' + buyerData.cardYear}"></span></p>
+        <p id="total" style="color: black;">Total sum:</p>
+        <h4 id="total-price" style="border: 3px solid black; padding: 10px;">$<span th:text="${totalPrice}"></span></h4>
+      </div>
+      <div id="completeBtnDiv">
+        <a href="/sneakers">Go to store</a>
+      </div>
+    </div>    
+</div>
+<h1 id="dailyui">Completed</h1>
+<!-- partial --> 
+  
+</body>
+</html>
