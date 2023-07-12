@@ -80,7 +80,7 @@ public class MainController {
         _shoeService.removeAllFilters();
         _clothesService.removeAllFilters();
         
-        return "user_pages/shoes_list.html";
+        return "user_pages/user_main_page.html";
     }
 
     
