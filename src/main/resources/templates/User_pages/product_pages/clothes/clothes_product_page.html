@@ -1,0 +1,131 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
+    <link rel="stylesheet" th:href="@{/navbar.css}">
+    <link rel="stylesheet" th:href="@{/footer.css}">
+    <link rel="stylesheet" th:href="@{/product_page.css}">
+    <link rel="stylesheet" th:href="@{/related_products_slider.css}">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script id="tns" async src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/min/tiny-slider.js" defer></script>
+    <script src="/scripts/clothes_related_products_slider.js"></script>
+    <script src="/scripts/open_sideNavigation.js"></script>
+    <script src="/scripts/offers_list.js"></script>
+
+    <title>Sneaker pair page</title>
+</head>
+<body onload="setLanguage()">
+<div th:if="${not isBgLang}">
+    <header th:replace="/navigation_bar.html :: body"></header>
+</div>
+<div th:if="${isBgLang}">
+    <header th:replace="/navigation_bar_bg.html :: body"></header>
+</div>
+<section>
+    <div id="brandAndModel">
+        <h4 th:text="${cloth.brand}"></h4>
+    </div>
+    <div id="color">
+        <h5 th:text="${cloth.model}"></h5>
+    </div>
+    <div class="row">
+        <div class="column" id="leftColumn">
+            <img id="mainImage" th:src="@{|/images/${cloth.images[#lists.size(cloth.images) - 1].imagePath}|}" alt="" style="width: 100%; height: auto; margin-top: auto;">
+            <div style="display: flex; flex-direction: row; justify-content: center; margin-top: 20px;">
+                <button id="box" style="border: 1px solid lightgrey; width: 20%; height: auto;" th:each="i : ${#numbers.sequence(cloth.images.size() - 1, 0, -1)}" th:with="image=${cloth.images[i]}" th:onclick="changeImage([[${image.imagePath}]])">
+                    <img th:src="@{|/images/${image.imagePath}|}" style="width: 100%; height: auto; margin-top: auto;">
+                </button>
+            </div>
+        </div>
+        <div class="column" id="rightColumn">
+            <div style="width: 100%; height: auto; border: 1px solid grey; border-radius: 5px;">
+                <form th:action="@{|/shoes/${cloth.id}/addToCart|}" method="post" id="form1">
+                    <div>
+                      <select name="size" id="formBtnForProductPage" title="sizes" required>
+                        <option value="" disabled selected><span th:text="${isBgLang} ? 'Избери размер:' : 'Select size:'"></span></option>
+                        <option th:each="size : ${cloth.sizes}" th:value="${size.size}" th:text="${size.size + '  ->  ' + size.quantity + ' in stock'}"></option>
+                      </select>
+                    </div>
+                    <div th:if="${not isAdmin}">    
+                        <button class="btn btn-sm btn-outline-primary" id="formBtnForProductPage" type="submit" form="form1"><span th:text="${isBgLang} ? 'Купи сега за ' + ${cloth.price} + '$' : 'Buy now for ' + ${cloth.price} + '$'"></span></button>      
+                    </div>
+                </form>
+                <div>
+                    <form th:action="@{|/shoes/addToFavorites/${cloth.id}|}" method="post" id="form2">
+                        <button th:disabled="${isAddedToFavorites}" id="formBtnForProductPage" type="submit" form="form2"><span th:text="${isBgLang} ? 'Добави в любими' : 'Add to favorites'"></span></a></button>
+                    </form>
+                </div>  
+            </div>
+            <div>
+                <p style="margin: 10px 0px;" th:text="${isBgLang} ? 'Текуща цена' : 'Current price'">
+                    <br>
+                    <p>$<b th:text="${cloth.price}"></b></p>
+                </p>
+            </div>
+            <div class="d-flex" style="margin-top: 20px; padding-top: 10px; border-top: 1px solid grey;">
+                <b><i class="fa-regular fa-circle-check fa-lg"></i> StockX Verified !</b>
+                <p style="position: absolute; right: 0;"><span th:text="${isBgLang} ? 'Състояние: Ново': 'Condition: New'"></span></p>
+            </div>
+            <div class="d-flex" style="margin-top: 20px; padding-top: 10px; border-top: 1px solid grey;">
+                <b><i class="fa-regular fa-circle-check fa-lg"></i> Our promise !</b>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div>
+        <div class="row" id="sliderBody">
+            <div id="slider-section">
+
+                <div class="container">
+                    <div class="subcontainer">
+
+                        <div class="slider-wrapper">
+                            <h3 style="font-weight: bold;" th:text="${isBgLang} ? 'Подобни продукти' : 'Related products' "></h3>
+                            <br>
+                            <div class="slider"></div>
+                            <div class="controls">
+                                <button class="previous" title="previous">
+                                    <i class="fa-solid fa-angle-left"></i>
+                                </button>
+                                <button class="next" title="next">
+                                    <i class="fa-solid fa-angle-right"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div>
+        <div class="row">
+            <div class="product-details">
+                <h5 th:text="${isBgLang} ? 'Данни за продукта' : 'Product details' "></h5>
+                <div class="column" id="leftColumn">
+                    <p><span th:text="${isBgLang} ? 'Произведен на: ' + ${cloth.releaseDate} : 'Release date: ' + ${cloth.releaseDate}"></span></p>
+                    <p><span th:text="${isBgLang} ? 'Пол: ' + ${cloth.gender} : 'Gender: ' + ${cloth.gender}"></span></p>
+                    <p><span th:text="${isBgLang} ? 'Цвят: ' + ${cloth.color} : 'Color: ' + ${cloth.color}"></span></p>
+                    <p><span th:text="${isBgLang} ? 'Спецификация на цвета: ' + ${cloth.colorSpecification} : 'Colorway: ' + ${cloth.colorSpecification}"></span></p>
+                </div>
+                <div class="column" id="rightColumn" style="float: right;">
+                    <p style="font-weight: bolder;" th:text="${isBgLang} ? 'Описание на продукта' : 'Product description'"></p>
+                    <p th:text="${cloth.description}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+</section>
+
+<div th:replace="/footer.html :: footer"></div>
+
+    <script th:inline="javascript">
+        var relatedClothes = [[${relatedClothes}]];
+        initializeDeals(relatedClothes);
+    </script>
