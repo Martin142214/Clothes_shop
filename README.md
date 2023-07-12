@@ -71,3 +71,7 @@ Pages in project:
 - Products cart
 ![image](https://github.com/Martin142214/Clothes_shop/assets/66480934/8995e33e-d809-433a-9b2a-26de1c8c9a0b)
 
+- Footer
+![image](https://github.com/Martin142214/Clothes_shop/assets/66480934/898353bc-ddbc-4bf4-821e-6113017ec15f)
+
+
