@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Daily UI #002 Credit Card Checkout</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,900' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://use.typekit.net/hoy3lrg.js"></script>
+<script>try{Typekit.load({ async: true });}catch(e){}</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<script src="/scripts/open_sideNavigation.js"></script>
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css'>
+<link rel="stylesheet" th:href="@{/checkout-template/checkout.css}">
+<link rel="stylesheet" th:href="@{/navbar.css}">
+<link rel="stylesheet" th:href="@{/footer.css}">
+
+</head>
+<body onload="setLanguage()">
+	<div th:if="${not isBgLang}">
+		<header th:replace="/navigation_bar.html :: body"></header>
+	</div>
+	<div th:if="${isBgLang}">
+		<header th:replace="/navigation_bar_bg.html :: body"></header>
+	</div>
+<!-- partial:index.partial.html -->
+<div id="wrapper">
+	<div id="container">
+		<div id="left-col">
+			<div id="left-col-cont">
+				<h2 style="color: black" th:text="${isBgLang} ? 'Продукти' : 'Items' "></h2>
+				<div class="item" th:each="shoeItem : ${shoesItems}">
+					<div class="img-col">
+						<img th:src="@{|/images/${shoeItem.product.mainImageUrl}|}" alt="" />
+					</div>
+					<div class="meta-col" th:attr="style=${shoeItem.product.isAuctionOffer} ? 'background-color:gold'">
+						<h3 th:text="${shoeItem.product.brand + ' ' + shoeItem.product.model}"></h3>
+						<p class="price">$<span th:text="${shoeItem.product.price}"></span></p>
+						<p class="price">Size EU: <span th:text="${shoeItem.product.size}"></span></p>
+						<p class="quantity">Quantity: <span th:text="${shoeItem.quantity}"></span></p>
+					</div>
+					<div class="removal-col">
+						<form th:action="@{|/shoes/checkout/${shoeItem.product.id}/delete|}" method="post" th:object="${shoeItem}" id="form1" style="margin: 0"> 
+							<!--<button type="submit" form="form1" class="delete-btn"><i class="fa fa-close"></i></button>-->
+							<input type="hidden" th:value="${shoeItem.product.id}" name="id">
+							<input type="submit" value="x" style="border: none; background-color: transparent; cursor: pointer;">			
+						</form>
+					</div>
+				</div>
+				<div class="item" th:each="clothItem : ${clothesItems}">
+					<div class="img-col">
+						<img th:src="@{|/images/${clothItem.product.imagePath}|}" alt="" />
+					</div>
+					<div class="meta-col">
+						<h3 th:text="${clothItem.product.brand + ' ' + clothItem.product.model}"></h3>
+						<p class="price">$<span th:text="${clothItem.product.price}"></span></p>
+						<p class="price">Size EU: <span th:text="${clothItem.product.size}"></span></p>
+						<p class="quantity">Quantity: <span th:text="${clothItem.quantity}"></span></p>
+					</div>
+					<div class="removal-col">
+						<form th:action="@{|/shoes/checkout/${clothItem.product.id}/delete|}" method="post" th:object="${clothItem}" id="form2" style="margin: 0">
+							<input type="hidden" th:value="${clothItem.product.id}" name="id">
+							<input type="submit" value="x" style="border: none; background-color: transparent; cursor: pointer;"> 
+							<!--<button type="submit" form="form2" class="delete-btn"><i class="fa fa-close"></i></button>-->				
+						</form>
+					</div>
+				</div>
+				<!-- <div class="item">
+					<div class="img-col">
+						<img src="http://emilcarlsson.se/assets/shirt.png" alt="" />
+					</div>
+					<div class="meta-col">
+						<h3>Blue Ocean Shirt</h3>
+						<p class="price">$60</p>
+					</div>
+				</div>
+				<div class="item">
+					<div class="img-col">
+						<img src="http://emilcarlsson.se/assets/green-shirt.png" alt="" />
+					</div>
+					<div class="meta-col">
+						<h3>Green Pine Shirt</h3>
+						<p class="price">$55</p>
+					</div>
+				</div>
+				<div class="item">
+					<div class="img-col">
+						<img src="http://emilcarlsson.se/assets/belt.png" alt="" />
+					</div>
+					<div class="meta-col">
+						<h3>Cow Skin Belt</h3>
+						<p class="price">$32</p>
+					</div>
+				</div>			
+				<div class="item">
+					<div class="img-col">
+						<img src="http://emilcarlsson.se/assets/watch1.png" alt="" />
+					</div>
+					<div class="meta-col">
+						<h3>Festina Quartz Watch</h3>
+						<p class="price">$299</p>
+					</div>
+				</div> -->
+				<p id="total" style="color: black;" th:text="${isBgLang} ? 'Общо' : 'Total' "></p>
+				<h4 id="total-price">$<span id="price-summary" th:text="${totalPrice}"></span></h4>
+			</div>
+		</div>
+		<div id="right-col">
+			<h2 th:text="${isBgLang} ? 'Плащане' : 'Payment' "></h2>
+			<div id="logotype">
+				<img id="mastercard" src="http://emilcarlsson.se/assets/MasterCard_Logo.png" alt="" />
+			</div>
+			
+			<form th:action="@{|/shoes/checkout/completed|}" method="get" id="form3" style="margin: 0">
+				<label for="" th:text="${isBgLang} ? 'Номер на карта' : 'CardNumber' "></label>
+				<div id="cardnumber">
+					<input type="number" max="4" max-length="4" min="4" placeholder="0123" /> <span class="divider">-</span>
+					<input type="number" max="4" max-length="4" min="4" placeholder="4567" /> <span class="divider">-</span>
+					<input type="number" max="4" max-length="4" min="4" placeholder="8901" /> <span class="divider">-</span>
+					<input type="number" max="4" max-length="4" min="4" placeholder="2345" />
+				</div>
+				
+				<h4 for="" th:text="${isBgLang} ? 'Притежател' : 'CardHolder' "></h4>
+
+				<label for="" th:text="${isBgLang} ? 'Име' : 'Firstname'"></label>
+				<input id="cardholder" type="text" placeholder="Martin" name="buyerFName" required/>
+
+				<label for="" th:text="${isBgLang} ? 'Фамилия' : 'Lastname'"></label>
+				<input id="cardholder" type="text" placeholder="Kalonkin" name="buyerLName" required/>
+
+				<div class="left">
+					<label for="" th:text="${isBgLang} ? 'Дата на изтичане' : 'Expiration Date' "></label>
+					<select name="cardMonth" id="month" onchange="" size="1" required>
+						<option value="00" disabled>Month</option>
+    				<option value="January">January</option>
+    				<option value="February">February</option>
+    				<option value="March">March</option>
+    				<option value="04">April</option>
+    				<option value="05">May</option>
+    				<option value="06">June</option>
+    				<option value="07">July</option>
+    				<option value="08">August</option>
+    				<option value="09">September</option>
+    				<option value="10">October</option>
+    				<option value="11">November</option>
+    				<option value="12">December</option>
+					</select>
+					<select name="cardYear" id="year" onchange="" size="1" required>
+						<option value="00" disabled>Year</option>
+    				<option value="2016">2016</option>
+    				<option value="2017">2017</option>
+    				<option value="2018">2018</option>
+    				<option value="04">2019</option>
+    				<option value="05">2020</option>
+    				<option value="06">2021</option>
+    				<option value="07">2022</option>
+    				<option value="08">2023</option>
+    				<option value="09">2024</option>
+    				<option value="10">2025</option>
+					</select>
+				</div>
+				
+				<div class="right">
+					<label id="cvc-label" for="">CVC <i class="fa fa-question-circle-o" aria-hidden="true"></i></label>
+					<input id="cvc" type="text" placeholder="123" maxlength="3" />
+				</div>	 
+				<button id="purchase" type="submit" form="form3" style="cursor: pointer;"><span th:text="${isBgLang} ? 'Купи': 'Purchase' "></span></button>
+				<button id="paypal" type="button"><i class="fa fa-paypal" aria-hidden="true"></i><span th:text="${isBgLang} ? 'Към сайта' : 'Continue shopping' "></span></button>
+				<p id="support">Having problem with checkout? <a href="#">Contact our support</a>.</p>
+			</form>
+		</div>
+	</div>
+</div>
+<h1 id="dailyui" th:text="${totalPrice}"></h1>
+<!-- partial --> 
+<script src="/scripts/purchase_checkout_validation.js"></script>  
+</body>
+</html>
