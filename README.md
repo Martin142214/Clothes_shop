@@ -16,6 +16,7 @@ Pages in project:
 - Shoe auction product page - has range slider for 360 degree rotation of shoe image and comments section
 - Products cart
 - purchase receipt
+
 <br>
 
 - Home page 
@@ -36,12 +37,12 @@ Pages in project:
 
 <br>
 
-- Sneakers page - user can filter items by 4 different categories
+- Sneakers page - user can filter items by 4 different categories - brand, color, size and price range.
 ![image](https://github.com/Martin142214/Clothes_shop/assets/66480934/a5233f79-ec8e-4499-a159-abcbd2d4dd88)
 
 <br>
 
-- Clothes page
+- Clothes page - user can filter items by 4 different categories - brand, gender, size and price range.
 ![image](https://github.com/Martin142214/Clothes_shop/assets/66480934/62a7a53e-6775-4fda-8791-4682a886a380)
 
 <br>
