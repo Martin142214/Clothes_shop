@@ -45,10 +45,6 @@ public class OfferController {
     @Autowired
     public OfferController(FilesService filesService, ShoeService shoeService) {
         this._shoeService = shoeService;
-        _shoeService.pageFilters = new ArrayList<>();
-        _shoeService.addFilters();
-        _shoeService.currentFilteredList = shoeService.getAll().stream().filter(shoe -> shoe.isAuctionOffer == false).toList();
-        _shoeService.filterIsRemoved = false;
     }
 
     @GetMapping
