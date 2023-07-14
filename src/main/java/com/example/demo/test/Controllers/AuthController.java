@@ -29,6 +29,7 @@ import com.example.demo.test.repositories.authRepositories.RoleRepository;
 import com.example.demo.test.repositories.authRepositories.UserRepository;
 
 @Controller
+@PreAuthorize("permitAll()")
 public class AuthController {
 
     @Autowired
@@ -56,7 +57,6 @@ public class AuthController {
     }
 
     @GetMapping("/user/register")
-    @PreAuthorize("!hasRole('ROLE_ADMIN') AND !hasRole('ROLE_USER')")
     public String showRegistrationForm(Model model) { return "auth_pages/register_form.html"; }   
 
     @GetMapping("/user/success")
