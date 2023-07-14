@@ -1,5 +1,6 @@
 package com.example.demo.test.controllers;
 
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,10 @@ public class MainController {
     @Autowired
     public MainController(ShoeService shoeService) {
         this._shoeService = shoeService;
+        _shoeService.pageFilters = new ArrayList<>();
+        _shoeService.addFilters();
+        _shoeService.currentFilteredList = shoeService.getAll().stream().filter(shoe -> shoe.isAuctionOffer == false).toList();
+        _shoeService.filterIsRemoved = false;
     }
 
     @RequestMapping(value = {"{lang}/", "/"})
