@@ -19,10 +19,10 @@
 </head>
 <body onload="setLanguage()">
 <div th:if="${not isBgLang}">
-    <header th:replace="/navigation_bar.html :: body"></header>
+    <header th:replace="/navbar/navigation_bar.html :: body"></header>
 </div>
 <div th:if="${isBgLang}">
-    <header th:replace="/navigation_bar_bg.html :: body"></header>
+    <header th:replace="/navbar/navigation_bar_bg.html :: body"></header>
 </div>
 <section>
     <div id="brandAndModel">
