@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.example.demo.test.services.CartService;
+import com.example.demo.test.services.ClothesService;
 import com.example.demo.test.services.ShoeService;
 
 import com.example.demo.test.services.UserService;
@@ -53,6 +54,9 @@ public class AdminController {
     @Autowired
     private ClothesRepository _clothesRepository;
 
+    @Autowired
+    private ClothesService _clothesService;
+
     private final String samePageRedirectUrl = "http://localhost:8080/admin";
 
     private final String samePageBgRedirectUrl = "http://localhost:8080/bg/admin";
@@ -82,8 +86,8 @@ public class AdminController {
         model.addAttribute("isBgLang", _shoeService.isLanguageBulgarian());
 
         //clear filters on clothes page when go to admin page
-        // _shoeService.removeAllFilters();
-        // _clothesService.removeAllFilters();
+        _shoeService.removeAllFilters();
+        _clothesService.removeAllFilters();
 
         return "/admin/admin_page.html";
     }
