@@ -1,31 +1,22 @@
 package com.example.demo.test.controllers;
 
-import java.io.File;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.example.demo.test.services.FilesService;
 import com.example.demo.test.services.ShoeService;
 import com.example.demo.test.services.UserService;
-import com.example.demo.test.models.classModels.FileDB;
 import com.example.demo.test.models.classModels.Filter;
-import com.example.demo.test.models.classModels.Sizes;
-import com.example.demo.test.models.entities.Shoe;
 import com.example.demo.test.models.enums.Brands;
-import com.example.demo.test.models.enums.Colors;
-import com.example.demo.test.models.enums.Conditions;
-
 import java.util.List;
 
 @Controller
