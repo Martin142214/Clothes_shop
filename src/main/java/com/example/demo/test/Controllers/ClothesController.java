@@ -177,7 +177,7 @@ public class ClothesController {
                     if (manyImagesDirectory.mkdir()) {
                         for (MultipartFile image : images) {
                             String imageName = image.getOriginalFilename();
-                            String imageUrl = "clothes-Images/" + newClothesDirectoryName + "/images/" + imageName;
+                            String imageUrl = "clothes-images/" + newClothesDirectoryName + "/images/" + imageName;
                             FileDB fileDB = new FileDB(imageName, image.getContentType(), imageUrl);
                             listOfImages.add(fileDB);                      
                             this._shoeService.uploadImage(image, imageName, manyImagesDirectory);    
