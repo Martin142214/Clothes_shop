@@ -218,7 +218,7 @@ public class ShoesController {
         _shoeService.removeAllFilters();
         _clothesService.removeAllFilters();
 
-        return "checkout-templates/checkout.html";
+        return "/user_pages/checkout-templates/checkout.html";
     }
 
     @GetMapping("/checkout/completed")
@@ -255,7 +255,7 @@ public class ShoesController {
         model.addAttribute("username", _userService.getCurrentUser().username);
         model.addAttribute("isAdmin", _userService.isAdmin()); 
         _cartRepository.delete(cartProductForUser.get());
-        return "checkout-templates/purchase_completed.html";
+        return "/user_pages/checkout-templates/purchase_completed.html";
     }
 
     @PostMapping("/{id}/addToCart")
