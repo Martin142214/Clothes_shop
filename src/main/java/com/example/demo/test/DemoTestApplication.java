@@ -9,7 +9,7 @@ public class DemoTestApplication {
 
 	public static void main(String[] args) {
 		System.setProperty("images.path", "E:/git/Clothes_shop/src/main/resources/static/images/");
-		System.setProperty("clothes-images.path", "E:/git/Clothes_shop/src/main/resources/static/images/clothes-Images/");
+		System.setProperty("clothes-images.path", "E:/git/Clothes_shop/src/main/resources/static/images/clothes-images/");
 		SpringApplication.run(DemoTestApplication.class, args);
 	}
 
