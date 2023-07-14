@@ -9,17 +9,16 @@
 <script>try{Typekit.load({ async: true });}catch(e){}</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <script src="/scripts/open_sideNavigation.js"></script>
 <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css'>
-<link rel="stylesheet" th:href="@{/checkout-template/checkout.css}">
-<link rel="stylesheet" th:href="@{/navbar.css}">
-<link rel="stylesheet" th:href="@{/footer.css}">
+<link rel="stylesheet" th:href="@{/css/checkout-template/checkout.css}">
+<link rel="stylesheet" th:href="@{/css/navbar.css}">
 
 </head>
 <body onload="setLanguage()">
 	<div th:if="${not isBgLang}">
-		<header th:replace="/navigation_bar.html :: body"></header>
+		<header th:replace="/navbar/navigation_bar.html :: body"></header>
 	</div>
 	<div th:if="${isBgLang}">
-		<header th:replace="/navigation_bar_bg.html :: body"></header>
+		<header th:replace="/navbar/navigation_bar_bg.html :: body"></header>
 	</div>
 <!-- partial:index.partial.html -->
 <div id="wrapper">
