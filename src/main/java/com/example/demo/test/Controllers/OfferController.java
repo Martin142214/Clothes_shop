@@ -38,9 +38,6 @@ public class OfferController {
     @Autowired
     private UserService _userService;
 
-    @Autowired
-    private ClothesService _clothesService;
-
     private final String mainControllerUrl = "http://localhost:8080/sneakers";
 
     private final String mainBgControllerUrl = "http://localhost:8080/bg/sneakers";
