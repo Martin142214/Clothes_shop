@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.example.demo.test.services.ClothesService;
 import com.example.demo.test.services.FilesService;
 import com.example.demo.test.services.ShoeService;
 import com.example.demo.test.services.UserService;
@@ -254,85 +253,6 @@ public class OfferController {
         return "sneakers_list.html";
     }*/
 
-    @PostMapping("/create")
-    public RedirectView create(Brands brand, String model, String description, 
-                               String releaseDate, Integer rating, String[] sizes, 
-                               Conditions condition, Colors color, String colorSpecification, Integer price, Boolean isAuctionOffer, 
-                               @RequestParam("mainImage") MultipartFile mainImage, 
-                               @RequestParam("images") MultipartFile[] images){
-        try {
-            String imagesPath = System.getProperty("images.path");
-
-            List<Sizes> sizesInStock = new ArrayList<>();
-            if (sizes != null) {
-                _shoeService.addSizesForShoe(sizes, sizesInStock);    
-            }
-            
-            String newShoesDirectoryName = _shoeService.concatenate(brand.toString().toLowerCase(), "_", model.toLowerCase().replace(" ", "-"), "_", colorSpecification.toLowerCase().replace(" ", "-"));
-            File newShoesDirectory = new File(imagesPath, newShoesDirectoryName);
-            
-            
-            if (newShoesDirectory.mkdir()) {
-                String mainImageName = StringUtils.cleanPath(mainImage.getOriginalFilename());
-                //FileDB mainImageFile = new FileDB(mainImageName, mainImage.getContentType(), mainImage.getBytes());
-
-                File mainImageDirectory = new File(newShoesDirectory, "main-image");
-                String mainImageUrl = "";
-                if (mainImageDirectory.mkdir()) {
-                    mainImageUrl = newShoesDirectoryName + "/main-image/" + mainImageName;
-                    this._shoeService.uploadImage(mainImage, mainImageName, mainImageDirectory);    
-                }
-
-                List<FileDB> sliderImageFiles = new ArrayList<>();     
-
-                if (isAuctionOffer) {
-
-                    //Upload multiple images for auction stocks
-                    File manyImagesDirectory = new File(newShoesDirectory, "slider-images");
-                    if (manyImagesDirectory.mkdir()) {
-                        for (MultipartFile image : images) {
-                            String imageName = image.getOriginalFilename();
-                            String sliderImageUrl = newShoesDirectoryName + "/slider-images/" + imageName;
-                            FileDB fileDB = new FileDB(imageName, image.getContentType(), sliderImageUrl);
-                            sliderImageFiles.add(fileDB);                      
-                            this._shoeService.uploadImage(image, imageName, manyImagesDirectory);    
-                        }     
-                    }
-                }
-                Shoe shoe = new Shoe(brand, model, description, releaseDate, sizesInStock, rating, condition, color, colorSpecification, price, isAuctionOffer, mainImageUrl, sliderImageFiles);
-                _shoeService.create(shoe);
-            }                
-        } 
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        if (_shoeService.isLanguageBulgarian()) {
-            return redirectView("http://localhost:8080/bg/admin");
-        }
-        return redirectView("http://localhost:8080/admin");
-    }
-
-
-    /*
-    TO DELETE
-    @PostMapping("/edit/{id}")
-    public RedirectView edit(@PathVariable String id, String brand, String model, int distanceInKm, String yearOfProduction, String imageUrl){
-        Car car = this._carService.GetById(id);
-        car.brand = brand;
-        car.model = model;
-        car.distanceInKm = distanceInKm;
-        car.yearOfProduction = yearOfProduction;
-        car.imageUrl = imageUrl;
-        this._carService.edit(car);
-        return redirectView(mainControllerUrl);
-    }
-
-    @PostMapping("/delete/{id}")
-    public RedirectView delete(@PathVariable String id){
-        this._carService.Delete(id);
-        return redirectView(mainControllerUrl);
-    }*/
 
     public RedirectView redirectView(String url){
         RedirectView redirectView = new RedirectView();
