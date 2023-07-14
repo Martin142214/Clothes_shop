@@ -8,8 +8,8 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 public class DemoTestApplication {
 
 	public static void main(String[] args) {
-		System.setProperty("images.path", "E:/Java IntelliJ projects/demo-test/src/main/resources/static/images/");
-		System.setProperty("clothes-images.path", "E:/Java IntelliJ projects/demo-test/src/main/resources/static/images/clothes-Images/");
+		System.setProperty("images.path", "E:/git/Clothes_shop/src/main/resources/static/images/");
+		System.setProperty("clothes-images.path", "E:/git/Clothes_shop/src/main/resources/static/images/clothes-Images/");
 		SpringApplication.run(DemoTestApplication.class, args);
 	}
 
