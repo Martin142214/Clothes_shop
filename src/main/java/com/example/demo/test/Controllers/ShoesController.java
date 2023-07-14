@@ -1,7 +1,9 @@
 package com.example.demo.test.controllers;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -10,21 +12,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.example.demo.test.models.cartModels.CartClothesModel;
 import com.example.demo.test.models.cartModels.CartShoeModel;
 import com.example.demo.test.models.cartModels.cart_items.ClothesItem;
 import com.example.demo.test.models.cartModels.cart_items.ShoeItem;
+import com.example.demo.test.models.classModels.FileDB;
+import com.example.demo.test.models.classModels.Sizes;
 import com.example.demo.test.models.entities.Clothes;
 import com.example.demo.test.models.entities.Favorite;
 import com.example.demo.test.models.entities.Shoe;
 import com.example.demo.test.models.entities.User;
+import com.example.demo.test.models.enums.Brands;
+import com.example.demo.test.models.enums.Colors;
+import com.example.demo.test.models.enums.Conditions;
 import com.example.demo.test.repositories.CartRepository;
 import com.example.demo.test.repositories.ClothesRepository;
 import com.example.demo.test.repositories.ShoeRepository;
@@ -114,6 +123,65 @@ public class ShoesController {
         _shoeService.removeAllFilters();
         
         return "user_pages/product_pages/shoes/product_page.html";
+    }
+
+    @PostMapping("/create")
+    public RedirectView create(Brands brand, String model, String description, 
+                               String releaseDate, Integer rating, String[] sizes, 
+                               Conditions condition, Colors color, String colorSpecification, Integer price, Boolean isAuctionOffer, 
+                               @RequestParam("mainImage") MultipartFile mainImage, 
+                               @RequestParam("images") MultipartFile[] images){
+        try {
+            String imagesPath = System.getProperty("images.path");
+
+            List<Sizes> sizesInStock = new ArrayList<>();
+            if (sizes != null) {
+                _shoeService.addSizesForShoe(sizes, sizesInStock);    
+            }
+            
+            String newShoesDirectoryName = _shoeService.concatenate(brand.toString().toLowerCase(), "_", model.toLowerCase().replace(" ", "-"), "_", colorSpecification.toLowerCase().replace(" ", "-"));
+            File newShoesDirectory = new File(imagesPath, newShoesDirectoryName);
+            
+            
+            if (newShoesDirectory.mkdir()) {
+                String mainImageName = StringUtils.cleanPath(mainImage.getOriginalFilename());
+                //FileDB mainImageFile = new FileDB(mainImageName, mainImage.getContentType(), mainImage.getBytes());
+
+                File mainImageDirectory = new File(newShoesDirectory, "main-image");
+                String mainImageUrl = "";
+                if (mainImageDirectory.mkdir()) {
+                    mainImageUrl = newShoesDirectoryName + "/main-image/" + mainImageName;
+                    this._shoeService.uploadImage(mainImage, mainImageName, mainImageDirectory);    
+                }
+
+                List<FileDB> sliderImageFiles = new ArrayList<>();     
+
+                if (isAuctionOffer) {
+
+                    //Upload multiple images for auction stocks
+                    File manyImagesDirectory = new File(newShoesDirectory, "slider-images");
+                    if (manyImagesDirectory.mkdir()) {
+                        for (MultipartFile image : images) {
+                            String imageName = image.getOriginalFilename();
+                            String sliderImageUrl = newShoesDirectoryName + "/slider-images/" + imageName;
+                            FileDB fileDB = new FileDB(imageName, image.getContentType(), sliderImageUrl);
+                            sliderImageFiles.add(fileDB);                      
+                            this._shoeService.uploadImage(image, imageName, manyImagesDirectory);    
+                        }     
+                    }
+                }
+                Shoe shoe = new Shoe(brand, model, description, releaseDate, sizesInStock, rating, condition, color, colorSpecification, price, isAuctionOffer, mainImageUrl, sliderImageFiles);
+                _shoeService.create(shoe);
+            }                
+        } 
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (_shoeService.isLanguageBulgarian()) {
+            return redirectView("http://localhost:8080/bg/admin");
+        }
+        return redirectView("http://localhost:8080/admin");
     }
 
     @GetMapping("/checkout")
